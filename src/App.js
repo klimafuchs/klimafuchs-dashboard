@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Login } from './components/login'
+import { Nutzer } from './components/nutzer'
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -11,7 +12,7 @@ const BasicExample = () => (
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/Nutzer">Nutzer</Link>
         </li>
         <li>
           <button onClick={() => localStorage.clear()} >Logout</button>
@@ -21,7 +22,7 @@ const BasicExample = () => (
       <hr />
 
       <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
+      <Route path="/Nutzer" component={Nutzer} />
     </div>
   </Router>
 );
@@ -29,12 +30,6 @@ const BasicExample = () => (
 const Home = () => (
   <div>
     <h2>Home</h2>
-  </div>
-);
-
-const About = () => (
-  <div>
-    <h2>About</h2>
   </div>
 );
 
