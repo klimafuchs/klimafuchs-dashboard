@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 export class Login extends Component {
 	constructor() {
@@ -41,7 +42,7 @@ export class Login extends Component {
 			  <input type="text" name="e-mail" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
 			  <span>Password:</span>
 			  <input type="text" name="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
-			  <input type="submit" value="Submit"/>
+			  <Button type="submit" color="primary">Submit</Button>
 			</form>
 		)
 	}
