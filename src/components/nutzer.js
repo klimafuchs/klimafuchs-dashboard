@@ -55,7 +55,6 @@ export class Nutzer extends Component {
 					{({loading, error, data, refetch}) => {
 						if (loading) return <div>its loading</div>;
 						if (error) return <div>${error.message}</div>;
-						console.log(data.users)
 						return (
 							
 				            <div>
@@ -71,7 +70,7 @@ export class Nutzer extends Component {
 							            <th>Role</th>
 							          </tr>
 							        </thead>
-							        <tbody>
+							        <tbody className="small">
 							            
 						              {data.users.map(user => (		
 										<tr>
@@ -114,7 +113,7 @@ export class Nutzer extends Component {
 										    	<Editmodal/>
 										    </th>
 										    <th className="align-middle">
-										    	<Button className="btn-block" color="warning" >Delete</Button>
+										    	<Button className="btn-block" color="danger" >Delete</Button>
 										    </th>
 										</tr>
 							          ))}

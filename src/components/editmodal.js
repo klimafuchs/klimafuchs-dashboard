@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, FormGroup, Label, Input } from 'reactstrap';
 
 export class Editmodal extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export class Editmodal extends React.Component {
   render() {
     return (
       <div>
-        <Button className="btn-block" color="danger" onClick={this.toggle}>Edit</Button>
+        <Button className="btn-block" color="warning" onClick={this.toggle}>Edit</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit User (NO DATA LOGIC YET!!!!111!!)</ModalHeader>
           <ModalBody>

@@ -2,3 +2,10 @@
   text-align: center;
 }
 
+.btn {
+	font-size: inherit;
+}
+
+.table td, .table th {
+	padding: .25em;
+}

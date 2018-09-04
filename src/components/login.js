@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Jumbotron, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export class Login extends Component {
 	constructor() {
