@@ -5,7 +5,8 @@ import {HttpLink} from 'apollo-link-http';
 import {setContext} from 'apollo-link-context';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloProvider, Query} from 'react-apollo';
-import { Table } from 'reactstrap';
+import { Button, Table } from 'reactstrap';
+import { Editmodal } from './editmodal'
 
 const link = new HttpLink({
 	uri: 'https://enviroommate.org/app-dev/api/feed'
@@ -56,7 +57,6 @@ export class Nutzer extends Component {
 						if (error) return <div>${error.message}</div>;
 						console.log(data.users)
 						return (
-
 							
 				            <div>
 				            	<Table>
@@ -75,40 +75,46 @@ export class Nutzer extends Component {
 							            
 						              {data.users.map(user => (		
 										<tr>
-											<th scope="row">
+											<th className="align-middle" scope="row">
 										        <option key={user.id} value={user.userName}>
 										          {user.id}
 										        </option>
 										     </th>					 	
-										    <th>
+										    <th className="align-middle">
 										        <option key={user.id} value={user.userName}>
 										          {user.userName}
 										        </option>
 										    </th>			 	
-										    <th>
+										    <th className="align-middle">
 										        <option key={user.id} value={user.userName}>
 										          {user.screenName}
 										        </option>
 										    </th>
-										    <th>
+										    <th className="align-middle">
 										        <option key={user.id} value={user.userName}>
 										          { String(user.emailConfirmed) }
 										        </option>
 										    </th>
-										    <th>
+										    <th className="align-middle">
 										        <option key={user.id} value={user.userName}>
 										          { String(user.isBanned) }
 										        </option>
 										    </th>
-										    <th>
+										    <th className="align-middle">
 										        <option key={user.id} value={user.userName}>
 										          {user.avatar}
 										        </option>
 										    </th>
-										    <th>
+										    <th className="align-middle">
 										        <option key={user.id} value={user.userName}>
 										          {user.role}
 										        </option>
+										    </th>
+										    <th className="align-middle">
+										    	<Editmodal/>
+										    </th>
+										    <th className="align-middle">
+										    	<Button className="btn-block" color="warning" >Delete</Button>
 										    </th>
 										</tr>
 							          ))}

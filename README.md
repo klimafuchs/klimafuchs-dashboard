@@ -1,10 +1,9 @@
 <h1>Testaccount</h1>
-<p>admin@enviroommate.org</p>
-<p>cohGh0in</p>
+<p>admin@enviroommate.org<br>cohGh0in</p>
 
 <h1>Queries</h1>
-<p>
-  
+
+<p>  
   query {
     posts {
       title,
