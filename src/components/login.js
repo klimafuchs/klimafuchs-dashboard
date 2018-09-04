@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Jumbotron, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 export class Login extends Component {
 	constructor() {
@@ -37,28 +37,30 @@ export class Login extends Component {
 
 	render() {
 		return(
-			<Form onSubmit={this.handleSubmit}>
-				<h2>Login zum Admin-Dashboard</h2>
+			<Jumbotron>
+				<Form onSubmit={this.handleSubmit}>
+					<h2>Login Admin-Dashboard</h2>
 
-        <FormGroup row>
-        	<Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 4 }}>
-	          <Label for="exampleEmail">Email</Label>
-	          <Input type="text" name="e-mail" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} placeholder="E-Mail-Adresse" />
-        	</Col>
-        </FormGroup>
+	        <FormGroup row>
+	        	<Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 4 }}>
+		          <Label for="exampleEmail">Email</Label>
+		          <Input type="text" name="e-mail" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} placeholder="E-Mail-Adresse" />
+	        	</Col>
+	        </FormGroup>
 
-        <FormGroup row>
-        	<Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 4 }}>
-	          <Label for="examplePassword">Password</Label>
-	          <Input  type="text" name="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} placeholder="Passwort" />
-        	</Col>
-        </FormGroup>
+	        <FormGroup row>
+	        	<Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 4 }}>
+		          <Label for="examplePassword">Password</Label>
+		          <Input  type="text" name="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} placeholder="Passwort" />
+	        	</Col>
+	        </FormGroup>
 
-        <FormGroup>
-	        <Button type="submit" color="primary">Submit</Button>
-				</FormGroup>
+	        <FormGroup>
+		        <Button type="submit" color="primary">Submit</Button>
+					</FormGroup>
 
-		  </Form>
+			  </Form>
+			</Jumbotron>
 		)
 	}
 
