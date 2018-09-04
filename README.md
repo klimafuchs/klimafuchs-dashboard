@@ -2,7 +2,9 @@
 <p>admin@enviroommate.org</p>
 <p>cohGh0in</p>
 
-Queries
+<h1>Queries</h1>
+<p>
+  
   query {
     posts {
       title,
@@ -18,10 +20,4 @@ Queries
       
     }
   }
-
-  query {
-    users {
-      screenName
-    }
-  }
-
+</p>
