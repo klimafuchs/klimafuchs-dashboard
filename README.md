@@ -1,8 +1,6 @@
-<h1>test</h1>
-
-Admin-Login
-  admin@enviroommate.org
-  cohGh0in
+<h1>Testaccount</h1>
+<p>admin@enviroommate.org</p>
+<p>cohGh0in</p>
 
 Queries
   query {
