@@ -5,6 +5,7 @@ import {HttpLink} from 'apollo-link-http';
 import {setContext} from 'apollo-link-context';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloProvider, Query} from 'react-apollo';
+import { Table } from 'reactstrap';
 
 const link = new HttpLink({
 	uri: 'https://enviroommate.org/app-dev/api/feed'
@@ -58,11 +59,61 @@ export class Nutzer extends Component {
 
 							
 				            <div>
-				              {data.users.map(user => (
-					            <option key={user.id} value={user.userName}>
-					              {user.userName}
-					            </option>
-					          ))}
+				            	<Table>
+							        <thead>
+							          <tr>
+							            <th>ID</th>
+							            <th>Username</th>
+							            <th>Screenname</th>
+							            <th>E-Mail confirmed</th>
+							            <th>is Banned?</th>
+							            <th>Avatar</th>
+							            <th>Role</th>
+							          </tr>
+							        </thead>
+							        <tbody>
+							            
+						              {data.users.map(user => (		
+										<tr>
+											<th scope="row">
+										        <option key={user.id} value={user.userName}>
+										          {user.id}
+										        </option>
+										     </th>					 	
+										    <th>
+										        <option key={user.id} value={user.userName}>
+										          {user.userName}
+										        </option>
+										    </th>			 	
+										    <th>
+										        <option key={user.id} value={user.userName}>
+										          {user.screenName}
+										        </option>
+										    </th>
+										    <th>
+										        <option key={user.id} value={user.userName}>
+										          { String(user.emailConfirmed) }
+										        </option>
+										    </th>
+										    <th>
+										        <option key={user.id} value={user.userName}>
+										          { String(user.isBanned) }
+										        </option>
+										    </th>
+										    <th>
+										        <option key={user.id} value={user.userName}>
+										          {user.avatar}
+										        </option>
+										    </th>
+										    <th>
+										        <option key={user.id} value={user.userName}>
+										          {user.role}
+										        </option>
+										    </th>
+										</tr>
+							          ))}
+							        </tbody>
+							      </Table>
 				            </div>
 						)
 
