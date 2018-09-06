@@ -58,7 +58,7 @@ export class Nutzer extends Component {
 						return (
 							
 				            <div>
-				            	<Table>
+				            	<Table className="border-top-0">
 							        <thead>
 							          <tr>
 							            <th>ID</th>

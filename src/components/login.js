@@ -37,7 +37,7 @@ export class Login extends Component {
 
 	render() {
 		return(
-			<Jumbotron>
+			<Jumbotron className="mt-5">
 				<Form onSubmit={this.handleSubmit}>
 					<h2>Login Admin-Dashboard</h2>
 

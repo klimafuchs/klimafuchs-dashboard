@@ -5,7 +5,7 @@ import {HttpLink} from 'apollo-link-http';
 import {setContext} from 'apollo-link-context';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloProvider, Query} from 'react-apollo';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
 
 const link = new HttpLink({
 	uri: 'https://enviroommate.org/app-dev/api/feed'
@@ -63,36 +63,34 @@ export class Feed extends Component {
 						console.log(data.posts)
 						return (
 							
-				            <div>
+	            <div>
 
-					              {data.posts.map(post => (		
-						      <Card body className="text-center">
-							        <CardTitle>
-							        	<option key={post.id} value={post.title}>
-							        		{post.title}
-							        	</option>
-							        </CardTitle>
-							        <CardText>
-							        	<option key={post.id} value={post.title}>
-							        		{post.body}
-							        	</option>
-							        </CardText>
-							        <Button>
-							        	<option key={post.id} value={post.title}>
-							        		{post.author.userName}
-							        	</option>
-							        </Button>
-						      </Card>
-									     
-						          ))}
-
-						        
-					            
-				            </div>
-						)
+		            {data.posts.map(post => (		
+						      <Row>
+							      <Card body className="text-left pb-1 mx-2 my-1">
+								        <CardTitle>
+								        	<option key={post.id} value={post.title}>
+								        		<span className="">Title: {post.title}</span>
+								        	</option>
+								        </CardTitle>
+								        <CardText>
+								        	<option key={post.id} value={post.title}>
+								        		Text: {post.body}
+								        	</option>
+								        </CardText>
+								        	<option className="text-center font-italic" key={post.id} value={post.title}>
+								        		<span>Post-ID: {post.id}, Author: {post.author.userName}, User-ID: {post.author.id}</span>
+								        	</option>
+							      </Card>
+									</Row>
+			          ))}						        
+		            
+	            </div>
+					)
 
 
-					}}
+					}
+				}
 				</Query>
 			</ApolloProvider>
 		)

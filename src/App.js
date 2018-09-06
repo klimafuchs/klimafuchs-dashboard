@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Login } from './components/login'
 import { Nutzer } from './components/nutzer'
 import { Feed } from './components/feed'
+import { Notification } from './components/notification'
 import './App.css';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 
 class App extends Component {
@@ -33,41 +34,65 @@ class App extends Component {
 
     return(
       <div className="App">
-        { isLoggedIn? (
+        
+        <Container>
+          { isLoggedIn? (
 
-          <div>
-            <Nav tabs>
-              <NavItem>
-                <NavLink
-                  className={classnames({ active: this.state.activeTab === '1' })}
-                  onClick={() => { this.toggle('1'); }}
-                >
-                  Nutzerverwaltung
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={classnames({ active: this.state.activeTab === '2' })}
-                  onClick={() => { this.toggle('2'); }}
-                >
-                  Feed
-                </NavLink>
-              </NavItem>
-                  <Button outline color="primary" onClick={() => localStorage.clear()} >Logout</Button>
-            </Nav>
-            <TabContent activeTab={this.state.activeTab}>
-              <TabPane tabId="1">
-                <Nutzer />
-              </TabPane>
-              <TabPane tabId="2">
-                <Feed />
-              </TabPane>
-            </TabContent>
-          </div>
+            <div className="mt-5">
+              <Nav tabs>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '1' })}
+                    onClick={() => { this.toggle('1'); }}
+                  >
+                    Nutzerverwaltung
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '2' })}
+                    onClick={() => { this.toggle('2'); }}
+                  >
+                    Feed
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '3' })}
+                    onClick={() => { this.toggle('3'); }}
+                  >
+                    Notification
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '4' })}
+                    onClick={() => { this.toggle('4'); }}
+                  >
+                    Challenges
+                  </NavLink>
+                </NavItem>
+                <Button className="ml-auto" outline color="primary" onClick={() => localStorage.clear()} >Logout</Button>
+              </Nav>
+              <TabContent className="p-3 border border-top-0" activeTab={this.state.activeTab}>
+                <TabPane tabId="1">
+                  <Nutzer />
+                </TabPane>
+                <TabPane tabId="2">
+                  <Feed />
+                </TabPane>
+                <TabPane tabId="3">
+                  <Notification />
+                </TabPane>
+                <TabPane tabId="4">
+                </TabPane>
+              </TabContent>
+            </div>
 
-          ) : (<Login callBackRender={this.loginTokenChanged} />
-        )}
+            ) : (<Login callBackRender={this.loginTokenChanged} />)
+          }
 
+        </Container>
       </div>
     )
 
