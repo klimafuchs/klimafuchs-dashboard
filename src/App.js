@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Login } from './components/login'
+import { Dashboard } from './components/dashboard'
 import { Nutzer } from './components/nutzer'
 import { Feed } from './components/feed'
 import { Notification } from './components/notification'
 import './App.css';
-import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Button } from 'reactstrap';
 import classnames from 'classnames';
 
 class App extends Component {
@@ -39,13 +40,14 @@ class App extends Component {
           { isLoggedIn? (
 
             <div className="mt-5">
+              <h1 className="pb-5">Admin-Dashboard</h1>
               <Nav tabs>
                 <NavItem>
                   <NavLink
                     className={classnames({ active: this.state.activeTab === '1' })}
                     onClick={() => { this.toggle('1'); }}
                   >
-                    Nutzerverwaltung
+                    Dashboard
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -53,7 +55,7 @@ class App extends Component {
                     className={classnames({ active: this.state.activeTab === '2' })}
                     onClick={() => { this.toggle('2'); }}
                   >
-                    Feed
+                    Nutzerverwaltung
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -61,13 +63,21 @@ class App extends Component {
                     className={classnames({ active: this.state.activeTab === '3' })}
                     onClick={() => { this.toggle('3'); }}
                   >
-                    Notification
+                    Feed
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink
                     className={classnames({ active: this.state.activeTab === '4' })}
                     onClick={() => { this.toggle('4'); }}
+                  >
+                    Notification
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '5' })}
+                    onClick={() => { this.toggle('5'); }}
                   >
                     Challenges
                   </NavLink>
@@ -76,15 +86,18 @@ class App extends Component {
               </Nav>
               <TabContent className="p-3 border border-top-0" activeTab={this.state.activeTab}>
                 <TabPane tabId="1">
-                  <Nutzer />
+                  <Dashboard />                  
                 </TabPane>
                 <TabPane tabId="2">
-                  <Feed />
+                  <Nutzer />
                 </TabPane>
                 <TabPane tabId="3">
-                  <Notification />
+                  <Feed />
                 </TabPane>
                 <TabPane tabId="4">
+                  <Notification />
+                </TabPane>
+                <TabPane tabId="5">
                 </TabPane>
               </TabContent>
             </div>

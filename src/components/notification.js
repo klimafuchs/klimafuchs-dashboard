@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Col, Button, FormGroup, Label, Input } from 'reactstrap';
 
 export class Notification extends Component {
 	render() {

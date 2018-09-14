@@ -56,77 +56,70 @@ export class Nutzer extends Component {
 						if (loading) return <div>its loading</div>;
 						if (error) return <div>${error.message}</div>;
 						return (
-							
-				            <div>
-				            	<Table className="border-top-0">
-							        <thead>
-							          <tr>
-							            <th>ID</th>
-							            <th>Username</th>
-							            <th>Screenname</th>
-							            <th>E-Mail confirmed</th>
-							            <th>is Banned?</th>
-							            <th>Avatar</th>
-							            <th>Role</th>
-							          </tr>
-							        </thead>
-							        <tbody className="small">
-							            
-						              {data.users.map(user => (		
+							<Table className="border-top-0">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Username</th>
+										<th>Screenname</th>
+										<th>E-Mail confirmed</th>
+										<th>is Banned?</th>
+										<th>Avatar</th>
+										<th>Role</th>
+									</tr>
+								</thead>
+								<tbody className="small">							            
+									{data.users.map(user => (
 										<tr>
 											<th className="align-middle" scope="row">
-										        <option key={user.id} value={user.userName}>
-										          {user.id}
-										        </option>
-										     </th>					 	
-										    <th className="align-middle">
-										        <option key={user.id} value={user.userName}>
-										          {user.userName}
-										        </option>
-										    </th>			 	
-										    <th className="align-middle">
-										        <option key={user.id} value={user.userName}>
-										          {user.screenName}
-										        </option>
-										    </th>
-										    <th className="align-middle">
-										        <option key={user.id} value={user.userName}>
-										          { String(user.emailConfirmed) }
-										        </option>
-										    </th>
-										    <th className="align-middle">
-										        <option key={user.id} value={user.userName}>
-										          { String(user.isBanned) }
-										        </option>
-										    </th>
-										    <th className="align-middle">
-										        <option key={user.id} value={user.userName}>
-										          {user.avatar}
-										        </option>
-										    </th>
-										    <th className="align-middle">
-										        <option key={user.id} value={user.userName}>
-										          {user.role}
-										        </option>
-										    </th>
-										    <th className="align-middle">
-										    	<Editmodal/>
-										    </th>
-										    <th className="align-middle">
-										    	<Button className="btn-block" color="danger" >Delete</Button>
-										    </th>
+													<option key={user.id}>
+														{user.id}
+													</option>
+												</th>					 	
+												<th className="align-middle">
+													<option key={user.id}>
+														{user.userName}
+													</option>
+												</th>			 	
+												<th className="align-middle">
+													<option key={user.id}>
+														{user.screenName}
+													</option>
+												</th>
+												<th className="align-middle">
+													<option key={user.id}>
+														{ String(user.emailConfirmed) }
+													</option>
+												</th>
+												<th className="align-middle">
+													<option key={user.id}>
+														{ String(user.isBanned) }
+													</option>
+												</th>
+												<th className="align-middle">
+													<option key={user.id}>
+														{user.avatar}
+													</option>
+												</th>
+												<th className="align-middle">
+													<option key={user.id}>
+														{user.role}
+													</option>
+												</th>
+												<th className="align-middle">
+													<Editmodal/>
+												</th>
+												<th className="align-middle">
+													<Button className="btn-block" color="danger" >Delete</Button>
+												</th>
 										</tr>
-							          ))}
-							        </tbody>
-							      </Table>
-				            </div>
+									))}
+								</tbody>
+							</Table>
 						)
-
-
 					}}
 				</Query>
 			</ApolloProvider>
 		)
 	}
-
 }

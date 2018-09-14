@@ -15,8 +15,10 @@
       comments {
         id,
         body,      
-      }
-      
+      }      
     }
   }
 </p>
+
+<a src="https://www.enviroommate.org/app-dev/giql">Link zu giql</a>
+

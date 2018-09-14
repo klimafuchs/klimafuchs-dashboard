@@ -5,7 +5,7 @@ import {HttpLink} from 'apollo-link-http';
 import {setContext} from 'apollo-link-context';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloProvider, Query} from 'react-apollo';
-import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Row, Card, Button, CardTitle, CardText } from 'reactstrap';
 
 const link = new HttpLink({
 	uri: 'https://enviroommate.org/app-dev/api/feed'
@@ -35,7 +35,8 @@ const FEED = gql`
 		posts {
 		    id
 		    title
-		    body
+				body
+				dateCreated
 		    author {
 		      id
 		      userName
@@ -60,7 +61,6 @@ export class Feed extends Component {
 					{({loading, error, data, refetch}) => {
 						if (loading) return <div>its loading</div>;
 						if (error) return <div>${error.message}</div>;
-						console.log(data.posts)
 						return (
 							
 	            <div>
@@ -69,26 +69,43 @@ export class Feed extends Component {
 						      <Row>
 							      <Card body className="text-left pb-1 mx-2 my-1">
 								        <CardTitle>
-								        	<option key={post.id} value={post.title}>
-								        		<span className="">Title: {post.title}</span>
-								        	</option>
+								        	<p key={post.id} value={post.title}>
+								        		Title: {post.title}
+								        	</p>
 								        </CardTitle>
 								        <CardText>
-								        	<option key={post.id} value={post.title}>
+								        	<p key={post.id} value={post.title}>
 								        		Text: {post.body}
+								        	</p>
+								        </CardText>
+								        <CardText>
+								        	<option className="text-center font-italic" key={post.id} value={post.title}>
+								        		Post-ID: {post.id}, Author: {post.author.userName}, User-ID: {post.author.id}
 								        	</option>
 								        </CardText>
-								        	<option className="text-center font-italic" key={post.id} value={post.title}>
-								        		<span>Post-ID: {post.id}, Author: {post.author.userName}, User-ID: {post.author.id}</span>
-								        	</option>
+								        <CardText>
+								        	<p className="text-center font-italic" key={post.id} value={post.title}>
+								        		Timestamp: {post.dateCreated}
+								        	</p>
+								        </CardText>
+								        <CardText>
+													<Button className="btn-block" color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.onCancel(post) }}>Delete</Button>
+								        </CardText>
+								        <CardText>
+													<option key={post.id}>
+														{post.comment ? 
+														<p>
+															{post.comment.body}, {post.comment.id}, {post.comment.author}, {post.comment.author.id}															
+														</p>
+														: null}
+													</option>
+												</CardText>
 							      </Card>
 									</Row>
 			          ))}						        
 		            
 	            </div>
-					)
-
-
+						)
 					}
 				}
 				</Query>
