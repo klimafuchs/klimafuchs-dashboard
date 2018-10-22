@@ -8,29 +8,6 @@ import {ApolloProvider, Query} from 'react-apollo';
 import { Button, Table } from 'reactstrap';
 import { Editmodal } from './editmodal'
 
-const link = new HttpLink({
-	uri: 'https://enviroommate.org/app-dev/api/feed'
-})
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    }
-  }
-});
-
-const cache = new InMemoryCache()
-
-const client = new ApolloClient({
-	cache: cache,
-	link: authLink.concat(link),
-})
-
 const USER_LIST = gql`
 	query {
 	  users {
@@ -48,9 +25,10 @@ const USER_LIST = gql`
 
 export class Nutzer extends Component {
 
+	refetch_parent = () => {}
+
 	render() {
 		return(
-			<ApolloProvider client={client}>
 				<Query query={USER_LIST}>
 					{({loading, error, data, refetch}) => {
 						if (loading) return <div>its loading</div>;
@@ -107,7 +85,7 @@ export class Nutzer extends Component {
 													</option>
 												</th>
 												<th className="align-middle">
-													<Editmodal/>
+													<Editmodal user={user}/>
 												</th>
 												<th className="align-middle">
 													<Button className="btn-block" color="danger" >Delete</Button>
@@ -119,7 +97,6 @@ export class Nutzer extends Component {
 						)
 					}}
 				</Query>
-			</ApolloProvider>
 		)
 	}
 }
