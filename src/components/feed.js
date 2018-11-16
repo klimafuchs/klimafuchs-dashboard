@@ -66,27 +66,21 @@ export class Feed extends Component {
 	            <div>
 
 		            {data.posts.map(post => (		
-						      <Row>
+						      <Row key={post.id}>
 							      <Card body className="text-left pb-1 mx-2 my-1">
 								        <CardTitle>
-								        	<p key={post.id} value={post.title}>
-								        		Title: {post.title}
-								        	</p>
+								        	Title: {post.title}
 								        </CardTitle>
 								        <CardText>
-								        	<p key={post.id} value={post.title}>
-								        		Text: {post.body}
-								        	</p>
+								        	Text: {post.body}
 								        </CardText>
 								        <CardText>
 								        	<option className="text-center font-italic" key={post.id} value={post.title}>
 								        		Post-ID: {post.id}, Author: {post.author.userName}, User-ID: {post.author.id}
 								        	</option>
 								        </CardText>
-								        <CardText>
-								        	<p className="text-center font-italic" key={post.id} value={post.title}>
-								        		Timestamp: {post.dateCreated}
-								        	</p>
+								        <CardText className="text-center font-italic">
+								        	Timestamp: {post.dateCreated}
 								        </CardText>
 								        <CardText>
 													<Button className="btn-block" color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.onCancel(post) }}>Delete</Button>

@@ -16,8 +16,8 @@ export class Login extends Component {
 		fetch('https://enviroommate.org/app-dev/api/login', {
 			method: 'POST',
 			headers: {
-			    'Accept': 'application/json',
-			    'Content-Type': 'application/json'
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(
 				{
@@ -25,18 +25,20 @@ export class Login extends Component {
 					password: this.state.password,
 				}
 			)
-		}).then((response) => { 
-		    return response.json()
+		}).then((response) => {
+				if (response.status !== 200)
+					console.log("error")
+					
+				else
+					return response.json()
 		}).then((json) => {
-			localStorage.setItem('token',json.token);
+			localStorage.setItem('token', json.token);
 			this.props.callBackRender(json.token)
-		}
-
-		);
+		});
 	}
 
 	render() {
-		return(
+		return (
 			<Jumbotron className="mt-5">
 				<Form onSubmit={this.handleSubmit}>
 					<h2>Login Admin-Dashboard</h2>
@@ -44,14 +46,14 @@ export class Login extends Component {
 					<FormGroup row>
 						<Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 4 }}>
 							<Label>Email</Label>
-							<Input type="text" name="e-mail" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} placeholder="E-Mail-Adresse" />
+							<Input type="e-mail" name="e-mail" value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} placeholder="E-Mail-Adresse" />
 						</Col>
 					</FormGroup>
 
 					<FormGroup row>
 						<Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 4 }}>
 							<Label>Password</Label>
-							<Input  type="text" name="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} placeholder="Passwort" />
+							<Input type="password" name="password" value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} placeholder="Passwort" />
 						</Col>
 					</FormGroup>
 
