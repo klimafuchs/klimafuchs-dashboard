@@ -3,6 +3,7 @@ import { Stats } from './stats'
 import { Nutzer } from './nutzer'
 import { Feed } from './feed'
 import { Notification } from './notification'
+import { Planning } from './planning'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Button } from 'reactstrap';
 import classnames from 'classnames';
 import ApolloClient from 'apollo-client';
@@ -12,7 +13,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 
 const link = new HttpLink({
-  uri: 'https://enviroommate.org/app-dev/api/feed'
+  uri: 'https://enviroommate.org/app-dev/api/gql'
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -102,6 +103,7 @@ class Dashboard extends Component {
               <Notification />
             </TabPane>
             <TabPane tabId="5">
+              <Planning />
             </TabPane>
           </TabContent>
         </div>
