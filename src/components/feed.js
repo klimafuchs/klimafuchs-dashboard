@@ -7,10 +7,6 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloProvider, Query} from 'react-apollo';
 import { Row, Card, Button, CardTitle, CardText } from 'reactstrap';
 
-const link = new HttpLink({
-	uri: 'https://enviroommate.org/app-dev/api/feed'
-})
-
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem('token');
@@ -24,11 +20,6 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const cache = new InMemoryCache()
-
-const client = new ApolloClient({
-	cache: cache,
-	link: authLink.concat(link),
-})
 
 const FEED = gql`
 	query {
@@ -56,7 +47,6 @@ export class Feed extends Component {
 
 	render() {
 		return(
-			<ApolloProvider client={client}>
 				<Query query={FEED}>
 					{({loading, error, data, refetch}) => {
 						if (loading) return <div>its loading</div>;
@@ -103,7 +93,6 @@ export class Feed extends Component {
 					}
 				}
 				</Query>
-			</ApolloProvider>
 		)
 	}
 

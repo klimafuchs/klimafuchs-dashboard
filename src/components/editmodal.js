@@ -5,7 +5,7 @@ import { Mutation } from 'react-apollo';
 
 const UPDATE_USER_DANGER = gql`
 	mutation TestMutation($id:Int!, $name:String!, $isBanned:Boolean!) {
-		changeUser(user:{id:$id, screenName:$name,  userName:$name, emailConfirmed:true, isBanned:$isBanned}) {
+		changeUser(user:{id:$id, screenName:$name, isBanned:$isBanned}) {
 		id
 		screenName
 		isBanned
@@ -38,7 +38,11 @@ export class Editmodal extends React.Component {
 					{(changeUser, { data }) => (
 
 						<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-							<Form onSubmit={e => { e.preventDefault(); changeUser({ variables: { name: this.state.screenName, id: this.props.user.id, isBanned: this.state.isBanned } }); this.toggle(); }}>
+							<Form onSubmit={e => {
+								e.preventDefault();
+								 changeUser({ variables: { name: this.state.screenName, id: this.props.user.id, isBanned: this.state.isBanned } });
+								 this.toggle();
+							}}>
 								<ModalHeader toggle={this.toggle}>Edit User</ModalHeader>
 								<ModalBody>
 									<FormGroup row>
@@ -51,8 +55,8 @@ export class Editmodal extends React.Component {
 										<Col xs={{ size: 10, offset: 1 }}>
 											<Label>Is Banned?</Label>
 											<Input type="select" name="isBanned" value={this.state.isBanned} onChange={(e) => this.setState({ isBanned: e.target.value })}>
-												<option value={true}>true</option>
-												<option value={false}>false</option>
+												<option value={ !!true }>true</option>
+												<option value={ !true }>false</option>
 											</Input>
 										</Col>
 									</FormGroup>

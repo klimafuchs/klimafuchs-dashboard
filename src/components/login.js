@@ -27,13 +27,15 @@ export class Login extends Component {
 			)
 		}).then((response) => {
 				if (response.status !== 200)
-					console.log("error")
-					
+					throw new Error("Login failed")					
 				else
 					return response.json()
 		}).then((json) => {
 			localStorage.setItem('token', json.token);
 			this.props.callBackRender(json.token)
+		}).catch((e) => {
+			alert(e.message)
+			// TODO markiere PW Feld
 		});
 	}
 
