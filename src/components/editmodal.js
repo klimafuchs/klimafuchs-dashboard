@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
 const UPDATE_USER_DANGER = gql`
-	mutation TestMutation($id:Int!, $name:String!, $isBanned:Boolean!) {
+	mutation ChangeUser($id:Int!, $name:String!, $isBanned:Boolean!) {
 		changeUser(user:{id:$id, screenName:$name, isBanned:$isBanned}) {
 		id
 		screenName

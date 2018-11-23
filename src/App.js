@@ -21,7 +21,7 @@ class App extends Component {
       <div className="App">        
         <Container>
           { isLoggedIn? (<Dashboard />) : (<Login callBackRender={this.loginTokenChanged} />)}
-        </Container> 
+        </Container>
       </div>
     )
   }

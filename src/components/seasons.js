@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
-import { Card, CardTitle, CardText } from 'reactstrap';
+import { CardTitle, CardText, Jumbotron } from 'reactstrap';
 
 const SEASONS_LIST = gql`
 	query {
@@ -31,13 +31,13 @@ export class Seasons extends React.Component {
               <div>
                 {
                   data.seasons.sort().map(season => (
-                    <Card className="my-1" key={season.title} body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                    <Jumbotron className="my-1" key={season.id}>
                       <CardTitle>{season.title}</CardTitle>
                       <CardText className="small">Season starts at: {season.startDate}</CardText>
                       <CardText className="small">First Week starts at: {season.startOffsetDate}</CardText>
                       <CardText className="small">Season ends at: {season.endDate}</CardText>
                       <CardText className="small">ID: {season.id}</CardText>
-                    </Card>
+                    </Jumbotron>
                   ))
                 }
               </div>

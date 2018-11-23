@@ -2,6 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
 import { Card, CardTitle, CardText } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const THEMENWOCHES_LIST = gql`
 	query {
@@ -40,6 +42,12 @@ export class Themenwoches extends React.Component {
                     </Card>
                   ))
                 }
+                <a href="#">
+                  <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                    <CardText><FontAwesomeIcon style={{ fontSize: '30px' }} icon={faPlus} /></CardText>
+                    <CardText className="small">Weiter zum Wiki</CardText>
+                  </Card>
+                </a>
               </div>
             )
           }}

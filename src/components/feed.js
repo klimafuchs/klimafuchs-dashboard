@@ -1,25 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
-import ApolloClient from 'apollo-client';
-import {HttpLink} from 'apollo-link-http';
-import {setContext} from 'apollo-link-context';
-import {InMemoryCache} from 'apollo-cache-inmemory';
-import {ApolloProvider, Query} from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import { Row, Card, Button, CardTitle, CardText } from 'reactstrap';
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    }
-  }
-});
-
-const cache = new InMemoryCache()
 
 const FEED = gql`
 	query {
@@ -43,56 +25,74 @@ const FEED = gql`
 		}
 	}`
 
-export class Feed extends Component {
+const DELETE_POST = gql`
+	mutation deletePost($id: Int!) {
+		removePost(postId: $id) {
+			id
+	}
+  }  
+`
+
+export class Feed extends React.Component {
 
 	render() {
-		return(
-				<Query query={FEED}>
-					{({loading, error, data, refetch}) => {
-						if (loading) return <div>its loading</div>;
-						if (error) return <div>${error.message}</div>;
-						return (
-							
-	            <div>
+		return (
+			<Query query={FEED}>
+				{({ loading, error, data, refetch }) => {
+					if (loading) return <div>its loading</div>;
+					if (error) return <div>${error.message}</div>;
+					return (
 
-		            {data.posts.map(post => (		
-						      <Row key={post.id}>
-							      <Card body className="text-left pb-1 mx-2 my-1">
-								        <CardTitle>
-								        	Title: {post.title}
-								        </CardTitle>
-								        <CardText>
-								        	Text: {post.body}
-								        </CardText>
-								        <CardText>
-								        	<option className="text-center font-italic" key={post.id} value={post.title}>
-								        		Post-ID: {post.id}, Author: {post.author.userName}, User-ID: {post.author.id}
-								        	</option>
-								        </CardText>
-								        <CardText className="text-center font-italic">
-								        	Timestamp: {post.dateCreated}
-								        </CardText>
-								        <CardText>
-													<Button className="btn-block" color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.onCancel(post) }}>Delete</Button>
-								        </CardText>
-								        <CardText>
-													<option key={post.id}>
-														{post.comment ? 
-														<p>
-															{post.comment.body}, {post.comment.id}, {post.comment.author}, {post.comment.author.id}															
-														</p>
-														: null}
-													</option>
-												</CardText>
-							      </Card>
-									</Row>
-			          ))}						        
-		            
-	            </div>
-						)
-					}
+						<div>
+
+							{data.posts.map(post => (
+								<Row key={post.id}>
+									<Card body className="text-left pb-1 mx-2 my-1">
+										<CardTitle>
+											Title: {post.title}
+										</CardTitle>
+										<CardText>
+											Text: {post.body}
+										</CardText>
+										<CardText>
+											<option className="text-center font-italic" key={post.id} value={post.title}>
+												Post-ID: {post.id}, Author: {post.author.userName}, User-ID: {post.author.id}
+											</option>
+										</CardText>
+										<CardText className="text-center font-italic">
+											Timestamp: {post.dateCreated}
+										</CardText>
+										<CardText>
+											<Mutation mutation={DELETE_POST}>
+												{(deletePost, { data, refetch }) => (
+													<Button className="btn btn-block btn-danger" onClick={e => {
+														if (window.confirm('Delete the item?')) {
+															deletePost({ variables: { id: post.id } });
+														}
+													}}>
+														Delete
+													</Button>
+												)}
+											</Mutation>
+										</CardText>
+										<CardText>
+											<option key={post.id}>
+												{post.comment ?
+													<p>
+														{post.comment.body}, {post.comment.id}, {post.comment.author}, {post.comment.author.id}
+													</p>
+													: null}
+											</option>
+										</CardText>
+									</Card>
+								</Row>
+							))}
+
+						</div>
+					)
 				}
-				</Query>
+				}
+			</Query>
 		)
 	}
 
