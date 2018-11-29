@@ -51,7 +51,7 @@ export class Seasons extends React.Component {
                     </Jumbotron>
                   ))
                 }
-                <ModalAddSeason />
+                <ModalEditSeason refetch={refetch}/>
               </div>
             )
           }}

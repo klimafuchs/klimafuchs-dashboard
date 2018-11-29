@@ -1,14 +1,15 @@
 import React from 'react';
-import { Button, Form, Modal, ModalHeader, ModalBody, ModalFooter, Col, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, Modal, ModalHeader, ModalBody, ModalFooter, Col, FormGroup, Label, Input, Jumbotron } from 'reactstrap';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faPlus } from '@fortawesome/free-solid-svg-icons'
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const UPDATE_SEASON = gql`
-    mutation updateSeason($id:Int!, $title:String!, $startDate:DateTime!, $startOffsetDate:DateTime!, $endDate:DateTime!) {
+    mutation updateSeason($id:Int, $title:String!, $startDate:DateTime!, $startOffsetDate:DateTime!, $endDate:DateTime!) {
       updateSeason(season:{id:$id, title:$title, startDate:$startDate, startOffsetDate:$startOffsetDate, endDate:$endDate}) {
         id
         title
@@ -22,14 +23,21 @@ export class ModalEditSeason extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      modal: false,
-      title: this.props.season.title,
-      startDate: this.props.season.startDate,
-      startOffsetDate: this.props.season.startOffsetDate,
-      endDate: this.props.season.endDate
-
-    };
+    if (this.props.season){
+      this.state = {
+        modal: false,
+        title: this.props.season.title,
+        startDate: this.props.season.startDate,
+        startOffsetDate: this.props.season.startOffsetDate,
+        endDate: this.props.season.endDate
+  
+      };      
+    } else {
+      this.state = {
+        modal: false,
+      };
+    }
+   
     this.toggle = this.toggle.bind(this);
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChangeStartOffsetDate = this.handleChangeStartOffsetDate.bind(this);
@@ -63,10 +71,22 @@ export class ModalEditSeason extends React.Component {
   }
 
   render() {
+    const isEdit = !!this.props.season; 
+    let button;
+
+    if(isEdit) {
+        button = <FontAwesomeIcon className="mx-1" style={{ fontSize: '12px' }} icon={faEdit} style={{ cursor: 'pointer' }} onClick={this.toggle} />
+    } else {
+      button = 
+      <Jumbotron>
+        <FontAwesomeIcon className="mx-1" style={{ fontSize: '30px' }} icon={faPlus} style={{ cursor: 'pointer' }} onClick={this.toggle} />
+      </Jumbotron>
+    }
+
     return (
       <span>
 
-        <FontAwesomeIcon className="mx-1" style={{ fontSize: '12px' }} icon={faEdit} style={{ cursor: 'pointer' }} onClick={this.toggle} />
+        {button}
 
         <Mutation mutation={UPDATE_SEASON}>
           {(changeSeason, { data }) => (
@@ -74,16 +94,22 @@ export class ModalEditSeason extends React.Component {
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <Form onSubmit={e => {
                 e.preventDefault();
+                let variables = {
+                  title: this.state.title,
+                  startDate: this.state.startDate,
+                  startOffsetDate: this.state.startOffsetDate,
+                  endDate: this.state.endDate
+                }
+                if (this.props.season) {
+                  variables = {id: this.props.season.id, ...variables} 
+                } 
                 changeSeason({
-                  variables: {
-                    id: this.props.season.id,
-                    title: this.state.title,
-                    startDate: this.state.startDate,
-                    startOffsetDate: this.state.startOffsetDate,
-                    endDate: this.state.endDate
-                  }
+                  variables
+                }).then(() =>  {
+                  if(this.props.refetch) this.props.refetch();
+                  this.toggle();
                 });
-                this.toggle();
+              
               }}>
                 <ModalHeader toggle={this.toggle}>Edit Season</ModalHeader>
                 <ModalBody>
