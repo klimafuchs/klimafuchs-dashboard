@@ -12,7 +12,7 @@ const UPDATE_USER_DANGER = gql`
 		}
  	}`
 
-export class Editmodal extends React.Component {
+export class ModalEditNutzer extends React.Component {
 
 	constructor(props) {
 		super(props);

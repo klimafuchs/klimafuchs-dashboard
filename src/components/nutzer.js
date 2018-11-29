@@ -2,7 +2,7 @@
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Button, Table } from 'reactstrap';
-import { Editmodal } from './editmodal'
+import { ModalEditNutzer } from './modalEditNutzer'
 
 const USER_LIST = gql`
 	query {
@@ -81,7 +81,7 @@ export class Nutzer extends Component {
 											</option>
 										</th>
 										<th className="align-middle">
-											<Editmodal user={user} />
+											<ModalEditNutzer user={user} />
 										</th>
 										<th className="align-middle">
 											<Button className="btn-block" color="danger" >Delete</Button>

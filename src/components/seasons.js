@@ -2,6 +2,11 @@ import React from 'react';
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
 import { CardTitle, CardText, Jumbotron } from 'reactstrap';
+import Time from 'react-time-format';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { ModalEditSeason } from './modalEditSeason';
+import { ModalAddSeason } from './modalAddSeason';
 
 const SEASONS_LIST = gql`
 	query {
@@ -32,11 +37,17 @@ export class Seasons extends React.Component {
                 {
                   data.seasons.sort().map(season => (
                     <Jumbotron className="my-1" key={season.id}>
-                      <CardTitle>{season.title}</CardTitle>
-                      <CardText className="small">Season starts at: {season.startDate}</CardText>
-                      <CardText className="small">First Week starts at: {season.startOffsetDate}</CardText>
-                      <CardText className="small">Season ends at: {season.endDate}</CardText>
-                      <CardText className="small">ID: {season.id}</CardText>
+                      <CardTitle>
+                        {season.title}
+                        <sup><ModalEditSeason season={season} /></sup>
+                        <sup><FontAwesomeIcon style={{ fontSize: '12px' }} icon={faTimes} /></sup>
+                      </CardTitle>
+                      <CardText className="small">
+                        Season starts at: <Time value={season.startDate} format="DD.MM.YYYY"></Time> |
+                        First Topicweek starts at: <Time value={season.startOffsetDate} format="DD.MM.YYYY"></Time> |
+                        Season ends at: <Time value={season.endDate} format="DD.MM.YYYY"></Time> |
+                        ID: {season.id}
+                      </CardText>
                     </Jumbotron>
                   ))
                 }
@@ -45,6 +56,8 @@ export class Seasons extends React.Component {
           }}
         </Query>
 
+        <ModalAddSeason />
+      
       </div>
     )
   }
