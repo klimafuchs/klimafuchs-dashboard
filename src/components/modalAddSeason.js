@@ -4,8 +4,8 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
 
 const ADD_SEASON = gql`
     mutation updateSeason($title:String!, $startDate:DateTime!, $startOffsetDate:DateTime!, $endDate:DateTime!) {
@@ -24,31 +24,32 @@ export class ModalAddSeason extends React.Component {
         super(props);
         this.state = {
             modalAdd: false,
-            title: "Provide a Season Title",
-            startDate: "Provide a Start Date",
-            startOffsetDate: "Provide a StartOffsetDate",
-            endDate: "Provide an endDate"
+            title: undefined,
+            startDate: undefined,
+            startOffsetDate: undefined,
+            endDate: undefined,
+            selectedDay: null
         };
         this.toggleAdd = this.toggleAdd.bind(this);
-        this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
-        this.handleChangeStartOffsetDate = this.handleChangeStartOffsetDate.bind(this);
-        this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
+        this.handleDayClick1 = this.handleDayClick1.bind(this);
+        this.handleDayClick2 = this.handleDayClick2.bind(this);
+        this.handleDayClick3 = this.handleDayClick3.bind(this);
     }
 
-    handleChangeStartDate(date) {
+    handleDayClick1(day) {
         this.setState({
-            startDate: date
-        })
+            startDate: day
+        });
     }
-    handleChangeStartOffsetDate(date) {
+    handleDayClick2(day) {
         this.setState({
-            startOffsetDate: date
-        })
+            startOffsetDate: day
+        });
     }
-    handleChangeEndDate(date) {
+    handleDayClick3(day) {
         this.setState({
-            endDate: date
-        })
+            endDate: day
+        });
     }
 
     toggleAdd() {
@@ -78,6 +79,7 @@ export class ModalAddSeason extends React.Component {
                                         endDate: this.state.endDate
                                     }
                                 });
+                                console.log(this.state.startDate)
                                 this.toggleAdd();
                             }}>
                                 <ModalBody>
@@ -94,21 +96,20 @@ export class ModalAddSeason extends React.Component {
                                     <FormGroup row>
                                         <Col xs={{ size: 10, offset: 1 }}>
                                             <Label>StartDate</Label>
-                                            <DatePicker
-                                                selected={this.state.startDate}
-                                                onChange={this.handleChangeStartDate}
-                                                dateFormat="dd.MM.yyyy"
+                                            <DayPickerInput
+                                                onDayClick={this.handleDayClick1}
+                                                selectedDays={this.state.selectedDay}
                                             />
+
                                         </Col>
                                     </FormGroup>
 
                                     <FormGroup row>
                                         <Col xs={{ size: 10, offset: 1 }}>
                                             <Label>StartOffsetDate</Label>
-                                            <DatePicker
-                                                selected={this.state.startOffsetDate}
-                                                onChange={this.handleChangeStartOffsetDate}
-                                                dateFormat="dd.MM.yyyy"
+                                            <DayPickerInput
+                                                onDayClick={this.handleDayClick2}
+                                                selectedDays={this.state.selectedDay}
                                             />
                                         </Col>
                                     </FormGroup>
@@ -116,10 +117,9 @@ export class ModalAddSeason extends React.Component {
                                     <FormGroup row>
                                         <Col xs={{ size: 10, offset: 1 }}>
                                             <Label>EndDate</Label>
-                                            <DatePicker
-                                                selected={this.state.endDate}
-                                                onChange={this.handleChangeEndDate}
-                                                dateFormat="dd.MM.yyyy"
+                                            <DayPickerInput
+                                                onDayClick={this.handleDayClick3}
+                                                selectedDays={this.state.selectedDay}
                                             />
                                         </Col>
                                     </FormGroup>

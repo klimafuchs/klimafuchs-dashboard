@@ -51,13 +51,13 @@ export class Seasons extends React.Component {
                     </Jumbotron>
                   ))
                 }
+                <ModalAddSeason />
               </div>
             )
           }}
         </Query>
 
-        <ModalAddSeason />
-      
+
       </div>
     )
   }
