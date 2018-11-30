@@ -23,21 +23,21 @@ export class ModalEditSeason extends React.Component {
 
   constructor(props) {
     super(props);
-    if (this.props.season){
+    if (this.props.season) {
       this.state = {
         modal: false,
         title: this.props.season.title,
         startDate: this.props.season.startDate,
         startOffsetDate: this.props.season.startOffsetDate,
         endDate: this.props.season.endDate
-  
-      };      
+
+      };
     } else {
       this.state = {
-        modal: false,
+        modal: false
       };
     }
-   
+
     this.toggle = this.toggle.bind(this);
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChangeStartOffsetDate = this.handleChangeStartOffsetDate.bind(this);
@@ -71,16 +71,18 @@ export class ModalEditSeason extends React.Component {
   }
 
   render() {
-    const isEdit = !!this.props.season; 
-    let button;
+    const isEdit = !!this.props.season;
+    let button, header;
 
-    if(isEdit) {
-        button = <FontAwesomeIcon className="mx-1" style={{ fontSize: '12px' }} icon={faEdit} style={{ cursor: 'pointer' }} onClick={this.toggle} />
+    if (isEdit) {
+      button = <FontAwesomeIcon className="mx-1" style={{ fontSize: '12px' }} icon={faEdit} style={{ cursor: 'pointer' }} onClick={this.toggle} />
+      header = "Edit Season"
     } else {
-      button = 
-      <Jumbotron>
-        <FontAwesomeIcon className="mx-1" style={{ fontSize: '30px' }} icon={faPlus} style={{ cursor: 'pointer' }} onClick={this.toggle} />
-      </Jumbotron>
+      button =
+        <Jumbotron>
+          <FontAwesomeIcon className="mx-1" style={{ fontSize: '30px' }} icon={faPlus} style={{ cursor: 'pointer' }} onClick={this.toggle} />
+        </Jumbotron>
+      header = "Add Season"
     }
 
     return (
@@ -101,57 +103,75 @@ export class ModalEditSeason extends React.Component {
                   endDate: this.state.endDate
                 }
                 if (this.props.season) {
-                  variables = {id: this.props.season.id, ...variables} 
-                } 
+                  variables = { id: this.props.season.id, ...variables }
+                }
                 changeSeason({
                   variables
-                }).then(() =>  {
-                  if(this.props.refetch) this.props.refetch();
+                }).then(() => {
+                  if (this.props.refetch) this.props.refetch();
                   this.toggle();
                 });
-              
+
               }}>
-                <ModalHeader toggle={this.toggle}>Edit Season</ModalHeader>
+
+                <ModalHeader toggle={this.toggle}>
+                  {header}
+                </ModalHeader>
                 <ModalBody>
 
                   <FormGroup row>
                     <Col xs={{ size: 10, offset: 1 }}>
                       <Label>Title</Label>
-                      <Input type="text"
+                      <Input
+                        type="text"
+                        placeholder={"Add Season" || ""}
                         value={this.state.title}
-                        onChange={(e) => this.setState({ title: e.target.value })} />
+                        onChange={(e) => this.setState({ title: e.target.value })}
+                      />
                     </Col>
                   </FormGroup>
 
                   <FormGroup row>
-                    <Col xs={{ size: 10, offset: 1 }}>
+                    <Col xs={{ size: 4, offset: 1 }}>
                       <Label>StartDate</Label>
+                    </Col>
+                    <Col xs={{ size: 6, offset: 0 }}>
                       <DatePicker
+                        className="form-control"
                         selected={this.state.startDate}
                         onChange={this.handleChangeStartDate}
                         dateFormat="dd.MM.yyyy"
+                        placeholderText="Select Beginning of Season"
                       />
                     </Col>
                   </FormGroup>
 
                   <FormGroup row>
-                    <Col xs={{ size: 10, offset: 1 }}>
+                    <Col xs={{ size: 4, offset: 1 }}>
                       <Label>StartOffsetDate</Label>
+                    </Col>
+                    <Col xs={{ size: 6, offset: 0 }}>
                       <DatePicker
+                        className="form-control"
                         selected={this.state.startOffsetDate}
                         onChange={this.handleChangeStartOffsetDate}
                         dateFormat="dd.MM.yyyy"
+                        placeholderText="Select Beginning of first TopicWeek"
                       />
                     </Col>
                   </FormGroup>
 
                   <FormGroup row>
-                    <Col xs={{ size: 10, offset: 1 }}>
+                    <Col xs={{ size: 4, offset: 1 }}>
                       <Label>EndDate</Label>
+                    </Col>
+                    <Col xs={{ size: 6, offset: 0 }}>
                       <DatePicker
+                        className="form-control"
                         selected={this.state.endDate}
                         onChange={this.handleChangeEndDate}
                         dateFormat="dd.MM.yyyy"
+                        placeholderText="Select End of Season"
                       />
                     </Col>
                   </FormGroup>

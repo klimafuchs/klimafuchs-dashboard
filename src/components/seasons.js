@@ -6,7 +6,6 @@ import Time from 'react-time-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { ModalEditSeason } from './modalEditSeason';
-import { ModalAddSeason } from './modalAddSeason';
 
 const SEASONS_LIST = gql`
 	query {
@@ -51,7 +50,7 @@ export class Seasons extends React.Component {
                     </Jumbotron>
                   ))
                 }
-                <ModalEditSeason refetch={refetch}/>
+                <ModalEditSeason refetch={refetch} />
               </div>
             )
           }}

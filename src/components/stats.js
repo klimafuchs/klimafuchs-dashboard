@@ -1,8 +1,8 @@
 import React from 'react';
 
-export class Stats extends React.Component {	
+export class Stats extends React.Component {
 	render() {
-		return(
+		return (
 			<div>
 				Stats here, commit test
 			</div>
