@@ -4,7 +4,7 @@ export class Stats extends React.Component {
 	render() {
 		return (
 			<div>
-				Stats here, commit test
+				Another commit test for the server
 			</div>
 		)
 	}
