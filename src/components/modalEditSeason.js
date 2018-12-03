@@ -75,7 +75,7 @@ export class ModalEditSeason extends React.Component {
     let button, header;
 
     if (isEdit) {
-      button = <FontAwesomeIcon className="ml-2 mr-1" style={{ fontSize: '12px' }} icon={faEdit} style={{ cursor: 'pointer' }} onClick={this.toggle} />
+      button = <FontAwesomeIcon className="ml-2 mr-1" style={{ fontSize: '12px', cursor: 'pointer' }} icon={faEdit} onClick={this.toggle} />
       header = "Edit Season"
     } else {
       button =
@@ -138,7 +138,7 @@ export class ModalEditSeason extends React.Component {
                     <Col xs={{ size: 6, offset: 0 }}>
                       <DatePicker
                         className="form-control"
-                        selected={this.state.startDate}
+                        selected={new Date(this.state.startDate)}
                         onChange={this.handleChangeStartDate}
                         dateFormat="dd.MM.yyyy"
                         placeholderText="Select Beginning of Season"
@@ -153,7 +153,7 @@ export class ModalEditSeason extends React.Component {
                     <Col xs={{ size: 6, offset: 0 }}>
                       <DatePicker
                         className="form-control"
-                        selected={this.state.startOffsetDate}
+                        selected={new Date(this.state.startOffsetDate)}
                         onChange={this.handleChangeStartOffsetDate}
                         dateFormat="dd.MM.yyyy"
                         placeholderText="Select Beginning of first TopicWeek"
@@ -168,7 +168,7 @@ export class ModalEditSeason extends React.Component {
                     <Col xs={{ size: 6, offset: 0 }}>
                       <DatePicker
                         className="form-control"
-                        selected={this.state.endDate}
+                        selected={new Date(this.state.endDate)}
                         onChange={this.handleChangeEndDate}
                         dateFormat="dd.MM.yyyy"
                         placeholderText="Select End of Season"

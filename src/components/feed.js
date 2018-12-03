@@ -78,13 +78,12 @@ export class Feed extends React.Component {
 											</Mutation>
 										</CardText>
 										<CardText>
-											<option key={post.id}>
-												{post.comment ?
-													<p>
-														{post.comment.body}, {post.comment.id}, {post.comment.author}, {post.comment.author.id}
-													</p>
-													: null}
-											</option>
+											{post.comments ? post.comments.map(comment => (
+												<span key={comment.id}>
+													{comment.body}, {comment.author.id}
+												</span>
+											))
+												: null}
 										</CardText>
 									</Card>
 								</Row>

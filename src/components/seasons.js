@@ -41,7 +41,7 @@ export class Seasons extends React.Component {
             return (
               <div>
                 {
-                  data.seasons.sort().map(season => (
+                  data.seasons.map(season => (
                     <Jumbotron className="my-1" key={season.id}>
                       <CardTitle>
                         {season.title}

@@ -40,8 +40,10 @@ export class ModalEditNutzer extends React.Component {
 						<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 							<Form onSubmit={e => {
 								e.preventDefault();
-								 changeUser({ variables: { name: this.state.screenName, id: this.props.user.id, isBanned: this.state.isBanned } });
-								 this.toggle();
+								changeUser({ variables: { name: this.state.screenName, id: this.props.user.id, isBanned: this.state.isBanned } })
+									.then(result => { console.log(result) })
+									.catch(error => alert(error));
+								this.toggle();
 							}}>
 								<ModalHeader toggle={this.toggle}>Edit User</ModalHeader>
 								<ModalBody>
@@ -54,9 +56,17 @@ export class ModalEditNutzer extends React.Component {
 									<FormGroup row>
 										<Col xs={{ size: 10, offset: 1 }}>
 											<Label>Is Banned?</Label>
-											<Input type="select" name="isBanned" value={this.state.isBanned} onChange={(e) => this.setState({ isBanned: e.target.value })}>
-												<option value={ !!true }>true</option>
-												<option value={ !true }>false</option>
+											<Input
+												type="select"
+												name="isBanned"
+												value={this.state.isBanned}
+												onChange={(e) => {
+													var isBanned = (e.target.value === "true")
+													this.setState({ isBanned })
+														
+												}}>
+												<option value={Boolean(true)}>true</option>
+												<option value={Boolean(false)}>false</option>
 											</Input>
 										</Col>
 									</FormGroup>

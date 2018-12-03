@@ -42,7 +42,7 @@ export class Themenwoches extends React.Component {
                     </Card>
                   ))
                 }
-                <a href="#">
+                <a target="_blank" rel="noopener noreferrer" href="https://enviroommate.org/wiki/index.php/Hauptseite">
                   <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                     <CardText><FontAwesomeIcon style={{ fontSize: '30px' }} icon={faPlus} /></CardText>
                     <CardText className="small">Weiter zum Wiki</CardText>

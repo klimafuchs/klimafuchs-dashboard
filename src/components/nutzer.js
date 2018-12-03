@@ -77,14 +77,14 @@ export class Nutzer extends Component {
 										</th>
 										<th className="align-middle">
 											<option key={user.id}>
-												{user.role}
+												{(user.role === 0)? "user" : "admin"}
 											</option>
 										</th>
 										<th className="align-middle">
 											<ModalEditNutzer user={user} />
 										</th>
 										<th className="align-middle">
-											<Button className="btn-block" color="danger" >Delete</Button>
+											<Button className="danger">Delete</Button>
 										</th>
 									</tr>
 								))}
