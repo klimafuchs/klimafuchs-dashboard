@@ -41,7 +41,6 @@ export class ModalEditNutzer extends React.Component {
 							<Form onSubmit={e => {
 								e.preventDefault();
 								changeUser({ variables: { name: this.state.screenName, id: this.props.user.id, isBanned: this.state.isBanned } })
-									.then(result => { console.log(result) })
 									.catch(error => alert(error));
 								this.toggle();
 							}}>

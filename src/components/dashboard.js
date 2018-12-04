@@ -60,7 +60,7 @@ class Dashboard extends Component {
     return (
       <ApolloProvider client={client}>
         <div className="mt-5">
-          <h1 className="pb-5">Admin-Dashboard</h1>
+          <h1 className="pb-5 font-weight-bold">Admin-Dashboard</h1>
           <Nav tabs>
             <NavItem>
               <NavLink className={classnames({ active: this.state.activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
