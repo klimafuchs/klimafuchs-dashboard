@@ -72,7 +72,7 @@ export class Feed extends React.Component {
 								.map(post => (
 									<Row className="align-items-end my-1" key={post.id}>
 
-										<Col className="pr-0" xs="12" md="10">
+										<Col className="pr-0" xs="12" lg="10">
 											<Card body className="text-left pb-1">
 												<CardTitle>
 													Title: {post.title}
@@ -86,7 +86,7 @@ export class Feed extends React.Component {
 											</Card>
 										</Col>
 
-										<Col xs="12" md="2">
+										<Col xs="12" lg="2">
 											<span className="small font-italic">
 												Post-ID: {post.id}, <Time value={post.dateCreated} format="DD.MM.YYYY hh:mm:ss"></Time>
 											</span>
@@ -115,9 +115,9 @@ export class Feed extends React.Component {
 
 														<Col className="p-1 border border-secondary border-top-0" xs="8">
 															<Col className="pr-0 mr-2">
-																<span key={comment.id}>
+																<CardText key={comment.id}>
 																	{comment.body}
-																</span>
+																</CardText>
 															</Col>
 															<Col className="pr-0">
 																<span className="small font-italic" key={comment.id}>
@@ -126,7 +126,7 @@ export class Feed extends React.Component {
 															</Col>
 														</Col>
 
-														<Col className="p-0 p-md-3" xs={{size: 8, offset: 2}} md={{size: 2, offset: 0}}>
+														<Col className="p-0 p-lg-3" xs={{size: 8, offset: 2}} lg={{size: 2, offset: 0}}>
 
 															<Mutation mutation={DELETE_COMMENT}>
 																{(deleteComment, { data, _ }) => (

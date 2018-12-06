@@ -1,27 +1,39 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
+import { DragDropContext } from 'react-beautiful-dnd'
 import { Login } from './components/login'
 import './App.css';
 import Dashboard from './components/dashboard';
 
-class App extends Component {
+export class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {token: ""}
+    this.state = { token: "" }
   }
 
-  loginTokenChanged = (token) => {this.setState({token: token})}
+  loginTokenChanged = (token) => { this.setState({ token: token }) }
+
+  onDragEnd = result => {
+    
+  }
 
   render() {
 
     const isLoggedIn = localStorage.getItem('token')
 
-    return(
-      <div className="App">        
-        <Container>
-          { isLoggedIn? (<Dashboard />) : (<Login callBackRender={this.loginTokenChanged} />)}
-        </Container>
+    return (
+      <div className="App">
+        <DragDropContext
+          onDragStart
+          onDragupdate
+          onDragEnd={this.onDragEnd}
+        >
+
+          <Container>
+            {isLoggedIn ? (<Dashboard />) : (<Login callBackRender={this.loginTokenChanged} />)}
+          </Container>
+        </DragDropContext>
       </div>
     )
   }

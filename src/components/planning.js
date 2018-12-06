@@ -11,10 +11,10 @@ export class Planning extends React.Component {
 
             <Container>
                 <Row>
-                    <Col xs="8">
+                    <Col xs="12" lg="8">
                         <Seasons />
                     </Col>
-                    <Col xs="4">
+                    <Col xs="12" lg="4">
                         <Themenwoches />
                     </Col>
                 </Row>
