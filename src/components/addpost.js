@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Card, Button, FormGroup, Label, Input, Form } from 'reactstrap';
+import { Card, Button, FormGroup, Label, Input, Form } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -49,28 +49,28 @@ export class AddPost extends React.Component {
       <Mutation mutation={CUSTOM_POST}>
         {(customPost, { data, _ }) => (
 
-            <Card body className="bg-light text-left py-3">
-              <h4 className="text-center">Add Custom Post</h4>
-              <Form onSubmit={e => {
-                e.preventDefault();
-                customPost({
-                  variables: { title: this.state.title, body: this.state.body },
-                  refetchQueries: [{ query: FEED }],
-                })
-              }}>
+          <Card body className="bg-light text-left py-3">
+            <h4 className="text-center">Add Custom Post</h4>
+            <Form onSubmit={e => {
+              e.preventDefault();
+              customPost({
+                variables: { title: this.state.title, body: this.state.body },
+                refetchQueries: [{ query: FEED }],
+              })
+            }}>
 
-                <FormGroup>
-                  <Label for="exampleText">Titel</Label>
-                  <Input type="text" placeholder="Titel des Posts" onChange={(e) => this.setState({ title: e.target.value })} />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="exampleText">Text</Label>
-                  <Input type="textarea" placeholder="Text für den Post" onChange={(e) => this.setState({ body: e.target.value })} />
-                </FormGroup>
-                <Button color="primary" type="submit">Absenden</Button>
+              <FormGroup>
+                <Label for="exampleText">Titel</Label>
+                <Input type="text" placeholder="Titel des Posts" onChange={(e) => this.setState({ title: e.target.value })} />
+              </FormGroup>
+              <FormGroup>
+                <Label for="exampleText">Text</Label>
+                <Input type="textarea" placeholder="Text für den Post" onChange={(e) => this.setState({ body: e.target.value })} />
+              </FormGroup>
+              <Button color="primary" type="submit">Absenden</Button>
 
-              </Form>
-            </Card>
+            </Form>
+          </Card>
         )}
       </Mutation>
 
