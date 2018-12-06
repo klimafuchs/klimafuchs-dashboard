@@ -67,7 +67,6 @@ export class Feed extends React.Component {
 							{data.posts
 								.slice(0)
 								.sort((a, b) => {
-									console.log({ a: a.dateCreated, b: b.dateCreated });
 									return (new Date(b.dateCreated).getTime()) - (new Date(a.dateCreated).getTime());
 								})
 								.map(post => (
