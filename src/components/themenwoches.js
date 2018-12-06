@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
-import { Card, CardTitle, CardText } from 'reactstrap';
+import { Card, CardTitle, CardText, Form, FormGroup, Input, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -19,6 +19,17 @@ const THEMENWOCHES_LIST = gql`
   }`
 
 export class Themenwoches extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+
+  wikiUrl = (name) => {
+    let url = "https://enviroommate.org/wiki/index.php?title=" + name + "&action=edit&redlink=1"
+    return(url)
+  }
 
   render() {
     return (
@@ -42,12 +53,23 @@ export class Themenwoches extends React.Component {
                     </Card>
                   ))
                 }
-                <a target="_blank" rel="noopener noreferrer" href="https://enviroommate.org/wiki/index.php/Hauptseite">
-                  <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                    <CardText><FontAwesomeIcon style={{ fontSize: '30px' }} icon={faPlus} /></CardText>
-                    <CardText className="small">Weiter zum Wiki</CardText>
-                  </Card>
-                </a>
+                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                  <CardTitle>Themenwoche im Wiki erstellen</CardTitle>
+                  <Form
+                    onSubmit={e => {
+                      e.preventDefault()
+                      {(this.state.themenwoche) ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben")}
+                    }}>
+                    <FormGroup>
+                      <Input placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
+                    </FormGroup>
+                    <CardText>
+                      <Button type="submit">
+                        <FontAwesomeIcon style={{ fontSize: '30px' }} icon={faPlus} />
+                      </Button>
+                    </CardText>
+                  </Form>
+                </Card>
               </div>
             )
           }}
