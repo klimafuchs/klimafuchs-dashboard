@@ -34,7 +34,10 @@ export class ModalEditSeason extends React.Component {
       };
     } else {
       this.state = {
-        modal: false
+        modal: false,
+        startDate: Date.now(),
+        startOffsetDate: Date.now(),
+        endDate: Date.now()
       };
     }
 
