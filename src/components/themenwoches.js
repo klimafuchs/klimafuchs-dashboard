@@ -4,7 +4,6 @@ import { Query } from 'react-apollo';
 import { Card, CardTitle, CardText, Form, FormGroup, Input, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { Droppable } from 'react-beautiful-dnd'
 
 const THEMENWOCHES_LIST = gql`
 	query {
@@ -46,27 +45,19 @@ export class Themenwoches extends React.Component {
               <div>
                 {
                   data.themenwoches.map(themenwoche => (
-                    <Droppable droppableId={themenwoche.id}>
-                      {(...provided) => {
 
-                        <Card
-                          className="my-1"
-                          key={themenwoche.title}
-                          body
-                          inverse style={{ backgroundColor: '#333', borderColor: '#333' }}
-                          innerRef={provided.innerRef}
-                          {...provided.droppableProps}
-                          {...provided.placeholder}
-                        >
-                          <CardTitle>{themenwoche.title}</CardTitle>
-                          <CardText className="small">{themenwoche.content}</CardText>
-                        </Card>
-
-                      }}
-                    </Droppable>
+                    <Card
+                      className="my-1"
+                      key={themenwoche.title}
+                      body
+                      inverse style={{ backgroundColor: '#333', borderColor: '#333' }}
+                    >
+                      <CardTitle>{themenwoche.title}</CardTitle>
+                      <CardText className="small">{themenwoche.content}</CardText>
+                    </Card>
                   ))
                 }
-                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                <Card style={{ backgroundColor: '#333', borderColor: '#333' }}>
                   <CardTitle>Themenwoche im Wiki erstellen</CardTitle>
                   <Form
                     onSubmit={e => {
