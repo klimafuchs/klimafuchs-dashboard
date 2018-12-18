@@ -49,7 +49,7 @@ export class AddPost extends React.Component {
       <Mutation mutation={CUSTOM_POST}>
         {(customPost, { data, _ }) => (
 
-          <Card body className="bg-light text-left py-3">
+          <Card body className="bg-light border-light shadow text-left py-3">
             <h4 className="text-center">Add Custom Post</h4>
             <Form onSubmit={e => {
               e.preventDefault();
