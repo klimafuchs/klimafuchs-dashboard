@@ -6,6 +6,8 @@ import Time from 'react-time-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { ModalEditSeason } from './modalEditSeason';
+import { AddSeasonPlan } from './addSeasonPlan';
+import { SeasonPlans } from './seasonPlans';
 
 const SEASONS_LIST = gql`
 	query {
@@ -31,7 +33,7 @@ export class Seasons extends React.Component {
     return (
       <div>
 
-        <h2>Seasons</h2>
+        <h3>Seasons</h3>
 
         <Query query={SEASONS_LIST}>
 
@@ -42,7 +44,7 @@ export class Seasons extends React.Component {
               <div>
                 {
                   data.seasons.map(season => (
-                    <Jumbotron className="my-1" key={season.id}>
+                    <Jumbotron className="shadow-sm my-1" key={season.id}>
                       <CardTitle>
                         {season.title}
                         <sup><ModalEditSeason season={season} /></sup>
@@ -50,7 +52,7 @@ export class Seasons extends React.Component {
                           {(deleteSeason, { data, _ }) => (
                             <sup>
                               <FontAwesomeIcon
-                                style={{ fontSize: '18px', cursor: "pointer" }}
+                                style={{ fontSize: '16px', cursor: "pointer" }}
                                 icon={faTimes}
                                 onClick={async e => {
 
@@ -72,6 +74,8 @@ export class Seasons extends React.Component {
                         Season ends at: <Time value={season.endDate} format="DD.MM.YYYY"></Time> |
                         ID: {season.id}
                       </CardText>
+                      <AddSeasonPlan season={season}/>
+                      <SeasonPlans season={season} />
                     </Jumbotron>
                   ))
                 }

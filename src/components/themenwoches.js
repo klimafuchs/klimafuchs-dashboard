@@ -34,7 +34,7 @@ export class Themenwoches extends React.Component {
 
       <div>
 
-        <h2>Themenwochen</h2>
+        <h3>Themenwochen</h3>
 
         <Query query={THEMENWOCHES_LIST}>
 
@@ -47,7 +47,7 @@ export class Themenwoches extends React.Component {
                   data.themenwoches.map(themenwoche => (
 
                     <Card
-                      className="my-1"
+                      className="my-1 shadow-sm"
                       key={themenwoche.title}
                       body
                       inverse style={{ backgroundColor: '#333', borderColor: '#333' }}
@@ -57,7 +57,7 @@ export class Themenwoches extends React.Component {
                     </Card>
                   ))
                 }
-                <Card style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                   <CardTitle>Themenwoche im Wiki erstellen</CardTitle>
                   <Form
                     onSubmit={e => {
