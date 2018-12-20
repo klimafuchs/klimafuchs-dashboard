@@ -2,7 +2,7 @@ import React from 'react';
 import Downshift from 'downshift'
 import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo';
-import { Col, Row, Input, Button, Form } from 'reactstrap'
+import { Col, Row, Input, Button, Form, Label } from 'reactstrap'
 
 const ADD_SEASONPLAN = gql`
 	mutation addSeasonPlan($sID:Int!, $tID:String!, $pos:Int!) {
@@ -68,87 +68,88 @@ export class AddSeasonPlan extends React.Component {
 
 							<Col>
 								<Downshift
-									/* line below can probably be deleted */
-									onChange={selection => this.setState({ title: selection.title})}
+									onChange={selection => this.setState({ title: selection.title })}
 									itemToString={item => (item ? item.title : '')}
 								>
 									{({
-									getInputProps,
-									getItemProps,
-									getLabelProps,
-									getMenuProps,
-									isOpen,
-									inputValue,
-									highlightedIndex,
-									selectedItem,
-								}) => (
-										<div>
-											<label {...getLabelProps()}></label>
-											<input {...getInputProps()} />
+										getInputProps,
+										getItemProps,
+										getLabelProps,
+										getMenuProps,
+										isOpen,
+										inputValue,
+										highlightedIndex,
+										selectedItem,
+									}) => (
+											<div>
+												<label {...getLabelProps()}>Themenwoche</label>
+												<input {...getInputProps()} />
 
-											<ul {...getMenuProps()} className="mb-0">
-												{isOpen
-													?
+												<ul {...getMenuProps()} className="mb-0">
+													{isOpen
+														?
 
-													<Query query={THEMENWOCHES_LIST}>
+														<Query query={THEMENWOCHES_LIST}>
 
-														{({ loading, error, data, refetch }) => {
-															if (loading) return <div>its loading</div>;
-															if (error) return <div>${error.message}</div>;
-															return (
-																<div>
-																	{
-																		data.themenwoches
-																			.filter(item => !inputValue || item.title.includes(inputValue))
-																			.map((item, index) => (
+															{({ loading, error, data, refetch }) => {
+																if (loading) return <div>its loading</div>;
+																if (error) return <div>${error.message}</div>;
+																return (
+																	<div>
+																		{
+																			data.themenwoches
+																				.filter(item => !inputValue || item.title.includes(inputValue))
+																				.map((item, index) => (
 
-																				<li className="list-unstyled bg-light"
-																					{...getItemProps({
-																						key: item.title,
-																						index,
-																						item,
-																						style: {
-																							backgroundColor:
-																								highlightedIndex === index ? 'lightgray' : 'white',
-																							fontWeight: selectedItem === item ? 'bold' : 'normal',
-																						},
-																					})}
-																				>
-																					{item.title}
-																				</li>
-																			))}
-																</div>
-															)
-														}}
-													</Query>
-													: null}
-											</ul>
+																					<li className="list-unstyled bg-light"
+																						{...getItemProps({
+																							key: item.title,
+																							index,
+																							item,
+																							style: {
+																								backgroundColor:
+																									highlightedIndex === index ? 'lightgray' : 'white',
+																								fontWeight: selectedItem === item ? 'bold' : 'normal',
+																							},
+																						})}
+																					>
+																						{item.title}
+																					</li>
+																				))}
+																	</div>
+																)
+															}}
+														</Query>
+														: null}
+												</ul>
 
-										</div>
-									)}
+											</div>
+										)}
 								</Downshift>
 							</Col>
 
-						<Col>
-							<Input
-								name="duration"
-								value={this.state.duration}
-								onChange={(e) => this.setState({ duration: e.target.value })}>
-							</Input>
-						</Col>
+							<Col>
+								<Label>Duration</Label>
+								<Input
+									name="duration"
+									value={this.state.duration}
+									onChange={(e) => this.setState({ duration: e.target.value })}>
+								</Input>
+							</Col>
 
-						<Col>
-							<Input
-								name="position"
-								value={this.state.position}
-								onChange={(e) => this.setState({ position: e.target.value })}>
-							</Input>
-							<Button type="submit">Click me</Button>
-						</Col>
+							<Col>
+								<Label>Position</Label>
+								<Input
+									name="position"
+									value={this.state.position}
+									onChange={(e) => this.setState({ position: e.target.value })}>
+								</Input>
+								<Button type="submit">Click me</Button>
+							</Col>
 						</Row>
 					</Form>
-			)
-			}
+				)
+				}
 			</Mutation>
 
 
