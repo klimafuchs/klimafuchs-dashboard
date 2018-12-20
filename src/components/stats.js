@@ -31,21 +31,9 @@ export class Stats extends React.Component {
 						if (error) return <div>${error.message}</div>;
 						return (
 							<div>
-								{data.currentSeason.map(currentSeason => (
-									<div>
-										<Jumbotron className="shadow-sm my-1" key={currentSeason.id}>
-											<CardTitle>
-												{currentSeason.title}
-											</CardTitle>
-											<CardText className="small">
-												Season starts at: <Time value={currentSeason.startDate} format="DD.MM.YYYY"></Time> |
-                        First Topicweek starts at: <Time value={currentSeason.startOffsetDate} format="DD.MM.YYYY"></Time> |
-                        Season ends at: <Time value={currentSeason.endDate} format="DD.MM.YYYY"></Time> |
-                        ID: {currentSeason.id}
-											</CardText>
-										</Jumbotron>
-									</div>
-								))}
+								{
+										this.props.currentSeason.title
+								}
 							</div>
 						)
 					}}
