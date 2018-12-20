@@ -32,7 +32,7 @@ export class Stats extends React.Component {
 						return (
 							<div>
 								{
-										this.props.currentSeason.title
+									data.currentSeason.title
 								}
 							</div>
 						)

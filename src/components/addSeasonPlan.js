@@ -5,11 +5,12 @@ import { Query, Mutation } from 'react-apollo';
 import { Col, Row, Input, Button, Form, Label } from 'reactstrap'
 
 const ADD_SEASONPLAN = gql`
-	mutation addSeasonPlan($sID:Int!, $tID:String!, $pos:Int!) {
+	mutation addSeasonPlan($sID:Int!, $tID:String!, $pos:Int!, $duration:Int!) {
 		updateSeasonPlan(seasonPlan:{
 			seasonId: $sID,
 			themenwocheId: $tID,
-			position: $pos
+			position: $pos,
+			duration: $duration
 		}) {
 			id,
 			season {id, title},
