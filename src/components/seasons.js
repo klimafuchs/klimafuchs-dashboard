@@ -43,41 +43,46 @@ export class Seasons extends React.Component {
             return (
               <div>
                 {
-                  data.seasons.map(season => (
-                    <Jumbotron className="shadow-sm my-1" key={season.id}>
-                      <CardTitle>
-                        {season.title}
-                        <sup><ModalEditSeason season={season} /></sup>
-                        <Mutation mutation={DELETE_SEASON}>
-                          {(deleteSeason, { data, _ }) => (
-                            <sup>
-                              <FontAwesomeIcon
-                                style={{ fontSize: '16px', cursor: "pointer" }}
-                                icon={faTimes}
-                                onClick={async e => {
+                  data.seasons
+                    .slice(0)
+                    .sort((a, b) => {
+                      return (new Date(a.startDate).getTime()) - (new Date(b.startDate).getTime());
+                    })
+                    .map(season => (
+                      <Jumbotron className="shadow-sm my-3 py-4 px-4" key={season.id}>
+                        <CardTitle>
+                          {season.title}
+                          <sup><ModalEditSeason season={season} /></sup>
+                          <Mutation mutation={DELETE_SEASON}>
+                            {(deleteSeason, { data, _ }) => (
+                              <sup>
+                                <FontAwesomeIcon
+                                  style={{ fontSize: '16px', cursor: "pointer" }}
+                                  icon={faTimes}
+                                  onClick={async e => {
 
-                                  if (window.confirm('Delete the item?')) {
-                                    await deleteSeason({ variables: { sId: season.id } });
-                                    // wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
-                                    refetch(); // refetch belongs to the surrounding FEED query
-                                  }
-                                }}>
-                              </FontAwesomeIcon>
-                            </sup>
-                          )}
-                        </Mutation>
+                                    if (window.confirm('Delete the item?')) {
+                                      await deleteSeason({ variables: { sId: season.id } });
+                                      // wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
+                                      refetch(); // refetch belongs to the surrounding FEED query
+                                    }
+                                  }}>
+                                </FontAwesomeIcon>
+                              </sup>
+                            )}
+                          </Mutation>
 
-                      </CardTitle>
-                      <CardText className="small">
-                        Season starts at: <Time value={season.startDate} format="DD.MM.YYYY"></Time> |
+                        </CardTitle>
+                        <CardText className="small">
+                          Season starts at: <Time value={season.startDate} format="DD.MM.YYYY"></Time> |
                         First Topicweek starts at: <Time value={season.startOffsetDate} format="DD.MM.YYYY"></Time> |
                         Season ends at: <Time value={season.endDate} format="DD.MM.YYYY"></Time> |
                         ID: {season.id}
-                      </CardText>
-                      <AddSeasonPlan season={season}/>
-                      <SeasonPlans season={season} />
-                    </Jumbotron>
-                  ))
+                        </CardText>
+                        <AddSeasonPlan season={season} />
+                        <SeasonPlans season={season} />
+                      </Jumbotron>
+                    ))
                 }
                 <ModalEditSeason refetch={refetch} />
               </div>
