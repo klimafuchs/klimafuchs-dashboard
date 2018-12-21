@@ -1,7 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag'
 import { Row, Col } from 'reactstrap'
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const SEASON_PLANS = gql`
 	query seasonPlans { 
@@ -19,13 +21,21 @@ const SEASON_PLANS = gql`
 	}
 `
 
+const REMOVE_SEASON_PLAN = gql`
+	mutation rSP($spId:Int!){
+		removeSeasonPlan(seasonPlanId:$spId){
+			duration
+		}
+	}
+`
+
 export class SeasonPlans extends React.Component {
 
-  secondsInDays = (seconds) => {
+	secondsInDays = (seconds) => {
 		let result = Math.round(seconds / 86400)
-		return ((result === 1)? result + " day" : result + " days")
+		return ((result === 1) ? result + " day" : result + " days")
 	}
-	
+
 	render() {
 		return (
 			<div>
@@ -36,24 +46,46 @@ export class SeasonPlans extends React.Component {
 						return (
 							<div>
 								{
-									data.seasonPlans.map(seasonPlan => (
-										<div key={seasonPlan.id}>
-											{this.props.season.id === seasonPlan.season.id ?
-												<Row className="bg-light p-1 shadow-sm my-1">
-													<Col>
-														{seasonPlan.themenwoche.title}
-													</Col>
-													<Col>
-														{this.secondsInDays(seasonPlan.duration)}
-													</Col>
-													<Col>
-														Position: {seasonPlan.position}
-													</Col>
-												</Row>
-												: null
-											}
-										</div>
-									))
+									data.seasonPlans
+										.slice(0)
+										.sort((a, b) => {
+											return (a.position) - (b.position);
+										})
+										.map(seasonPlan => (
+											<div key={seasonPlan.id}>
+												{this.props.season.id === seasonPlan.season.id ?
+													<Row className="bg-light p-1 shadow-sm my-1 mx-1">
+														<Col className="d-flex align-items-center">
+															{seasonPlan.themenwoche.title}
+														</Col>
+														<Col className="d-flex align-items-center justify-content-center">
+															{this.secondsInDays(seasonPlan.duration)}
+														</Col>
+														<Col className="d-flex align-items-center justify-content-center ">
+															{seasonPlan.position}
+														</Col>
+														<Mutation mutation={REMOVE_SEASON_PLAN}>
+															{(deleteSeasonPlan, { data, _ }) => (
+																<button type="submit" className="btn btn-link">
+																	<FontAwesomeIcon
+																		style={{ fontSize: '16px', cursor: "pointer" }}
+																		icon={faTrash}
+																		onClick={async e => {
+																			if (window.confirm('Delete the item?')) {
+																				await deleteSeasonPlan({ variables: { spId: seasonPlan.id } });
+																				// wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
+																				refetch(); // refetch belongs to the surrounding FEED query
+																			}
+																		}}>
+																	</FontAwesomeIcon>
+																</button>
+															)}
+														</Mutation>
+													</Row>
+													: null
+												}
+											</div>
+										))
 								}
 							</div>
 						)

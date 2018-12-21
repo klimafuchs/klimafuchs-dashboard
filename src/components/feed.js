@@ -43,11 +43,11 @@ const DELETE_POST = gql`
 `
 
 const DELETE_COMMENT = gql`
-    mutation DeleteComment($id: Int!) {
-        removeComment(CommentId: $id) {
-            dateCreated
-        }
-    } 
+	mutation DeleteComment($id: Int!) {
+		removeComment(CommentId: $id) {
+				dateCreated
+		}
+	} 
 `
 
 export class Feed extends React.Component {

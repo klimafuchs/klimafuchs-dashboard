@@ -3,6 +3,8 @@ import Downshift from 'downshift'
 import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo';
 import { Col, Row, Input, Button, Form, Label } from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const ADD_SEASONPLAN = gql`
 	mutation addSeasonPlan($sID:Int!, $tID:String!, $pos:Int!, $duration:Int!) {
@@ -17,7 +19,7 @@ const ADD_SEASONPLAN = gql`
 			position,
 			themenwoche {title, content}
 		}
-	}
+	} 
 `
 
 const SEASON_PLANS = gql`
@@ -51,6 +53,11 @@ export class AddSeasonPlan extends React.Component {
 		};
 	}
 
+	DaysInSeconds = (days) => {
+		let result = Math.round(days * 86400)
+		return result
+	}
+
 	render() {
 		return (
 
@@ -59,13 +66,17 @@ export class AddSeasonPlan extends React.Component {
 					<Form onSubmit={e => {
 						e.preventDefault();
 						updateSeasonPlan({
-							variables: { tID: this.state.title, sID: this.props.season.id, duration: this.state.duration, pos: this.state.position },
+							variables: { tID: this.state.title, sID: this.props.season.id, duration: this.DaysInSeconds(this.state.duration), pos: this.state.position },
 							refetchQueries: [{ query: SEASON_PLANS }]
 						})
 
 					}}>
 
-						<Row className="bg-light p-1 shadow-sm">
+						<div className="small font-italic text-left ml-2" >
+							<span>Add a Themenwoche</span>
+						</div>
+
+						<Row className="bg-light p-1 shadow-sm mx-1">
 
 							<Col>
 								<Downshift
@@ -83,11 +94,12 @@ export class AddSeasonPlan extends React.Component {
 										selectedItem,
 									}) => (
 											<div>
-												<label {...getLabelProps()}>Themenwoche</label>
-												<input {...getInputProps()} />
+												{/* <label {...getLabelProps()}>Themenwoche</label> */}
+												<Input className="px-2 my-2" placeholder="start typing..." {...getInputProps()} />
 
-												<ul {...getMenuProps()} className="mb-0">
+												<ul {...getMenuProps()} className="p-0 pr-4 position-absolute w-100">
 													{isOpen
+
 														?
 
 														<Query query={THEMENWOCHES_LIST}>
@@ -99,18 +111,19 @@ export class AddSeasonPlan extends React.Component {
 																	<div>
 																		{
 																			data.themenwoches
-																				.filter(item => !inputValue || item.title.includes(inputValue))
+																				.filter(item => !inputValue || item.title.toLowerCase().includes(inputValue.toLowerCase()))
 																				.map((item, index) => (
 
-																					<li className="list-unstyled bg-light"
+																					<li className="p-1 text-left bg-light"
 																						{...getItemProps({
 																							key: item.title,
 																							index,
 																							item,
 																							style: {
-																								backgroundColor:
-																									highlightedIndex === index ? 'lightgray' : 'white',
-																								fontWeight: selectedItem === item ? 'bold' : 'normal',
+																								color:
+																									highlightedIndex === index ? '#007BFF' : null,
+																								cursor: 'pointer',
+																								listStyleType: 'none'
 																							},
 																						})}
 																					>
@@ -130,24 +143,33 @@ export class AddSeasonPlan extends React.Component {
 							</Col>
 
 							<Col>
-								<Label>Duration</Label>
-								<Input
-									name="duration"
-									value={this.state.duration}
+								<Input className="px-2 my-2"
+									placeholder="duration in days"
+									type="number" min="0"
+									style={{ textAlign: 'center' }}
 									onChange={(e) => this.setState({ duration: e.target.value })}>
 								</Input>
 							</Col>
 
 							<Col>
-								<Label>Position</Label>
-								<Input
-									name="position"
-									value={this.state.position}
+								<Input className="px-2 my-2"
+									placeholder="position in season"
+									type="number" min="1"
+									style={{ textAlign: 'center' }}
 									onChange={(e) => this.setState({ position: e.target.value })}>
 								</Input>
-								<Button type="submit">Click me</Button>
 							</Col>
+
+							<button type="submit" className="btn btn-link text-primary">
+								<FontAwesomeIcon
+									style={{ fontSize: '16px', cursor: "pointer" }}
+									icon={faPlus}
+								>
+								</FontAwesomeIcon>
+							</button>
+
 						</Row>
+
 					</Form>
 				)
 				}
