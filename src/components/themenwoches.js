@@ -47,12 +47,12 @@ export class Themenwoches extends React.Component {
                   data.themenwoches.map(themenwoche => (
 
                     <Card
-                      className="my-1 shadow-sm"
+                      className="my-1 p-3 shadow-sm"
                       key={themenwoche.title}
                       body
                       inverse style={{ backgroundColor: '#333', borderColor: '#333' }}
                     >
-                      <CardTitle>{themenwoche.title}</CardTitle>
+                      <CardTitle className="mb-0">{themenwoche.title}</CardTitle>
                       <CardText className="small">{themenwoche.content}</CardText>
                     </Card>
                   ))
@@ -65,13 +65,11 @@ export class Themenwoches extends React.Component {
                       { (this.state.themenwoche) ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben") }
                     }}>
                     <FormGroup>
-                      <Input placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
+                      <Input className="text-center" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
                     </FormGroup>
-                    <CardText>
-                      <Button type="submit">
-                        <FontAwesomeIcon style={{ fontSize: '30px' }} icon={faPlus} />
-                      </Button>
-                    </CardText>
+                    <Button className="bg-light" type="submit">
+                      <FontAwesomeIcon className="text-primary" style={{ fontSize: '30px' }} icon={faPlus} />
+                    </Button>
                   </Form>
                 </Card>
               </div>

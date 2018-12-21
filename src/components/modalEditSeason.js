@@ -78,12 +78,12 @@ export class ModalEditSeason extends React.Component {
     let button, header;
 
     if (isEdit) {
-      button = <FontAwesomeIcon className="ml-2 mr-1" style={{ fontSize: '12px', cursor: 'pointer' }} icon={faEdit} onClick={this.toggle} />
+      button = <FontAwesomeIcon className="text-primary ml-2 mr-1" style={{ fontSize: '12px', cursor: 'pointer' }} icon={faEdit} onClick={this.toggle} />
       header = "Edit Season"
     } else {
       button =
-        <Jumbotron style={{ cursor: 'pointer' }} onClick={this.toggle} >
-          <FontAwesomeIcon className="mx-1 w-100" style={{ fontSize: "30px" }} icon={faPlus} />
+        <Jumbotron className="shadow bg-light" style={{ cursor: 'pointer' }} onClick={this.toggle} >
+          <FontAwesomeIcon className="text-primary mx-1 w-100" style={{ fontSize: "30px" }} icon={faPlus} />
         </Jumbotron>
       header = "Add Season"
     }

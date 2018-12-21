@@ -56,7 +56,9 @@ export class SeasonPlans extends React.Component {
 												{this.props.season.id === seasonPlan.season.id ?
 													<Row className="bg-light p-1 shadow-sm my-1 mx-1">
 														<Col className="d-flex align-items-center">
-															{seasonPlan.themenwoche.title}
+															<span>
+																{seasonPlan.themenwoche.title}
+															</span>
 														</Col>
 														<Col className="d-flex align-items-center justify-content-center">
 															{this.secondsInDays(seasonPlan.duration)}

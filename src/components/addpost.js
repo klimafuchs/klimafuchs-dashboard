@@ -8,7 +8,7 @@ const CUSTOM_POST = gql`
     addPost (post:{title:$title, body:$body}) {
       title
       body
-      id  
+      id
     }
   }`
 

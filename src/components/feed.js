@@ -85,7 +85,7 @@ export class Feed extends React.Component {
 																icon={faTimes}
 																onClick={async e => {
 																	if (window.confirm('Delete the item?')) {
-																		await deletePost({ variables: { id: post.id } });
+																		await deletePost({ variables: { id: post.id } }).catch(error => alert(error));
 																		// wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
 																		refetch(); // refetch belongs to the surrounding FEED query
 																	}

@@ -49,7 +49,8 @@ export class Seasons extends React.Component {
                       return (new Date(a.startDate).getTime()) - (new Date(b.startDate).getTime());
                     })
                     .map(season => (
-                      <Jumbotron className="shadow-sm my-3 py-4 px-4" key={season.id}>
+                      <Jumbotron className={`shadow my-3 py-4 px-4 ${(( new Date(season.startDate).getTime() < Date.now() && new Date(season.endDate).getTime() > Date.now()) ? null : "bg-light")}`}  key={season.id}>
+                      
                         <CardTitle>
                           {season.title}
                           <sup><ModalEditSeason season={season} /></sup>
@@ -57,12 +58,13 @@ export class Seasons extends React.Component {
                             {(deleteSeason, { data, _ }) => (
                               <sup>
                                 <FontAwesomeIcon
+                                className="text-primary"
                                   style={{ fontSize: '16px', cursor: "pointer" }}
                                   icon={faTimes}
                                   onClick={async e => {
 
                                     if (window.confirm('Delete the item?')) {
-                                      await deleteSeason({ variables: { sId: season.id } });
+                                      await deleteSeason({ variables: { sId: season.id } }).catch(error => alert(error));
                                       // wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
                                       refetch(); // refetch belongs to the surrounding FEED query
                                     }
@@ -75,9 +77,9 @@ export class Seasons extends React.Component {
                         </CardTitle>
                         <CardText className="small">
                           Season starts at: <Time value={season.startDate} format="DD.MM.YYYY"></Time> |
-                        First Topicweek starts at: <Time value={season.startOffsetDate} format="DD.MM.YYYY"></Time> |
-                        Season ends at: <Time value={season.endDate} format="DD.MM.YYYY"></Time> |
-                        ID: {season.id}
+                          First Topicweek starts at: <Time value={season.startOffsetDate} format="DD.MM.YYYY"></Time> |
+                          Season ends at: <Time value={season.endDate} format="DD.MM.YYYY"></Time> |
+                          ID: {season.id}
                         </CardText>
                         <AddSeasonPlan season={season} />
                         <SeasonPlans season={season} />
