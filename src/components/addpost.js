@@ -4,11 +4,12 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const CUSTOM_POST = gql`
-  mutation CustomPost($title:String!, $body:String!) {
-    addPost (post:{title:$title, body:$body}) {
+  mutation CustomPost($title:String!, $body:String!, $isPinned:Boolean!) {
+    addPost (post:{title:$title, body:$body, isPinned:$isPinned}) {
       title
       body
       id
+      isPinned
     }
   }`
 
@@ -43,18 +44,22 @@ export class AddPost extends React.Component {
     }
   }
 
+  handleCheckBoxChange = (e) => {
+    this.setState({isPinned: e.target.checked})
+  }
+
   render() {
 
     return (
       <Mutation mutation={CUSTOM_POST}>
         {(customPost, { data, _ }) => (
 
-          <Card body className="bg-light border-light shadow text-left py-3">
+          <Card body className="bg-light border-light shadow-sm text-left py-3 mb-3">
             <h4 className="text-center">Add Custom Post</h4>
             <Form onSubmit={e => {
               e.preventDefault();
               customPost({
-                variables: { title: this.state.title, body: this.state.body },
+                variables: { title: this.state.title, body: this.state.body, isPinned: this.state.isPinned },
                 refetchQueries: [{ query: FEED }],
               })
             }}>
@@ -66,6 +71,14 @@ export class AddPost extends React.Component {
               <FormGroup>
                 <Label for="exampleText">Text</Label>
                 <Input type="textarea" placeholder="Text für den Post" onChange={(e) => this.setState({ body: e.target.value })} />
+              </FormGroup>
+              <FormGroup check className="mb-3">
+                <Label check>
+                  <Input
+                  type="checkbox"
+                  onChange={this.handleCheckBoxChange}/>
+                  {' '} Pin Post
+                </Label>
               </FormGroup>
               <Button color="primary" type="submit">Absenden</Button>
 

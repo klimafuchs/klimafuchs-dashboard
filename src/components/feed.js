@@ -9,29 +9,30 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const FEED = gql`
     query {
-        posts {
-            id
-            title
-                body
-                dateCreated
-            author {
-              id
-              userName
-							screenName
-							role
-        }
-        comments {
-          id
-          body
-                dateCreated
-          author {
-            id
-            userName
-                    screenName
-          }
-        }
-        }
-    }
+			posts {
+				id
+				title
+				body
+				isPinned
+				dateCreated
+				author {
+					id
+					userName
+					screenName
+					role
+				}
+				comments {
+					id
+					body
+					dateCreated
+					author {
+						id
+						userName
+						screenName
+					}
+				}
+			}
+		}
 `
 
 const DELETE_POST = gql`
@@ -72,11 +73,18 @@ export class Feed extends React.Component {
 								.sort((a, b) => {
 									return (new Date(b.dateCreated).getTime()) - (new Date(a.dateCreated).getTime());
 								})
+								.sort((a, b) => {
+									return (b.isPinned) - (a.isPinned);
+								})
 								.map(post => (
 									<Row className="align-items-end my-1" key={post.id}>
 
 										<Col xs="12" lg="12">
-											<Card body className="shadow border-light text-left pb-1">
+											<Card
+												body
+												className={`shadow text-left pb-1 ${ post.isPinned ? "border border-primary" : null}`}
+												>
+
 												<Mutation mutation={DELETE_POST}>
 													{(deletePost, { data, _ }) => (
 														<div className="position-absolute" style={{ right: '5px', top: '5px' }}>
@@ -94,6 +102,9 @@ export class Feed extends React.Component {
 														</div>
 													)}
 												</Mutation>
+
+												{post.isPinned ? <span className="text-center text-primary font-italic font-weight-bold">Pinned Content</span> : null}
+												
 												<CardTitle>
 													Title: {post.title}
 												</CardTitle>
@@ -104,6 +115,7 @@ export class Feed extends React.Component {
 													Author: {post.author.screenName},
 													User-ID: {post.author.id},
 													Post-ID: {post.id},
+													IsPinned?: {String(post.isPinned)},
 													<Time value={post.dateCreated} format="DD.MM.YYYY hh:mm:ss"></Time>
 												</CardText>
 											</Card>

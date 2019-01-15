@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
 import { CardTitle, CardText, Jumbotron, Row, Col } from 'reactstrap';
 import Time from 'react-time-format';
+import { SeasonPlans } from './seasonPlans';
 
 const CURRENT_SEASON = gql`
 	query currentSeason {
@@ -55,46 +56,19 @@ export class Stats extends React.Component {
 						return (
 							<div>
 
-								<Jumbotron className="shadow-sm my-1">
+								<Jumbotron className={`shadow my-3 py-4 px-4 `} key={data.currentSeason.id}>
+
 									<CardTitle>
 										{data.currentSeason.title}
+										
 									</CardTitle>
 									<CardText className="small">
 										Season starts at: <Time value={data.currentSeason.startDate} format="DD.MM.YYYY"></Time> |
-                        First Topicweek starts at: <Time value={data.currentSeason.startOffsetDate} format="DD.MM.YYYY"></Time> |
-                        Season ends at: <Time value={data.currentSeason.endDate} format="DD.MM.YYYY"></Time> |
-                        ID: {data.currentSeason.id}
+                          First Topicweek starts at: <Time value={data.currentSeason.startOffsetDate} format="DD.MM.YYYY"></Time> |
+                          Season ends at: <Time value={data.currentSeason.endDate} format="DD.MM.YYYY"></Time> |
+                          ID: {data.currentSeason.id}
 									</CardText>
-									<Query query={SEASON_PLANS}>
-										{({ loading, error, data, refetch }) => {
-											if (loading) return <div>its loading</div>;
-											if (error) return <div>${error.message}</div>;
-											return (
-												<div>
-													{
-														data.seasonPlans.map(seasonPlan => (
-															<div key={seasonPlan.id}>
-																{CurrentSeasonID === seasonPlan.season.id ?
-																	<Row className="bg-light p-1 shadow-sm my-1">
-																		<Col>
-																			{seasonPlan.themenwoche.title}
-																		</Col>
-																		<Col>
-																			{this.secondsInDays(seasonPlan.duration)}
-																		</Col>
-																		<Col>
-																			Position: {seasonPlan.position}
-																		</Col>
-																	</Row>
-																	: null
-																}
-															</div>
-														))
-													}
-												</div>
-											)
-										}}
-									</Query>
+									<SeasonPlans season={data.currentSeason} />
 								</Jumbotron>
 
 							</div>
