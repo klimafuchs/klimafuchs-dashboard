@@ -73,15 +73,17 @@ export class AddSeasonPlan extends React.Component {
 
 					<Form onSubmit={e => {
 						e.preventDefault();
-						this.ValidatePositionOfNewSeasonPlan(this.state.position)? alert("position is already used") : 
-						updateSeasonPlan({
-								variables: { 
-									tID: this.state.title, 
-									sID: this.props.season.id, 
-									duration: this.DaysInSeconds(this.state.duration), 
-									pos: this.state.position },
+						this.ValidatePositionOfNewSeasonPlan(this.state.position) ? alert("position is already used")
+							:
+							updateSeasonPlan({
+								variables: {
+									tID: this.state.title,
+									sID: this.props.season.id,
+									duration: this.DaysInSeconds(this.state.duration),
+									pos: this.state.position
+								},
 								refetchQueries: [{ query: SEASON_PLANS }]
-							}).catch(error => alert(error))						
+							}).catch(error => alert(error))
 					}}>
 						<div className="small font-italic text-left ml-2" >
 							<span>Add a Themenwoche</span>
@@ -108,7 +110,9 @@ export class AddSeasonPlan extends React.Component {
 												{/* <label {...getLabelProps()}>Themenwoche</label> */}
 												<Input className="px-2 my-2" placeholder="start typing..." {...getInputProps()} />
 
-												<ul {...getMenuProps()} className="p-0 pr-4 w-100">
+												<ul {...getMenuProps()}
+													className="p-0 pr-4 w-100 bg-light shadow-sm position-absolute"
+													style={{ zIndex: '2' }}>
 													{isOpen
 
 														?

@@ -56,7 +56,7 @@ export class SeasonPlans extends React.Component {
 												{this.props.season.id === seasonPlan.season.id ?
 													<Row className="bg-light p-1 shadow-sm my-1 mx-1">
 														<Col className="d-flex align-items-center">
-															<span>
+															<span style={{ zIndex: '1' }}>
 																{seasonPlan.themenwoche.title}
 															</span>
 														</Col>
@@ -68,17 +68,20 @@ export class SeasonPlans extends React.Component {
 														</Col>
 														<Mutation mutation={REMOVE_SEASON_PLAN}>
 															{(deleteSeasonPlan, { data, _ }) => (
-																<button type="submit" className="btn btn-link">
+																<button
+																	type="submit"
+																	className="btn btn-link"
+																	onClick={async e => {
+																		if (window.confirm('Delete the item?')) {
+																			await deleteSeasonPlan({ variables: { spId: seasonPlan.id } });
+																			// wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
+																			refetch(); // refetch belongs to the surrounding FEED query
+																		}
+																	}}>
 																	<FontAwesomeIcon
 																		style={{ fontSize: '16px', cursor: "pointer" }}
 																		icon={faTrash}
-																		onClick={async e => {
-																			if (window.confirm('Delete the item?')) {
-																				await deleteSeasonPlan({ variables: { spId: seasonPlan.id } });
-																				// wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
-																				refetch(); // refetch belongs to the surrounding FEED query
-																			}
-																		}}>
+																	>
 																	</FontAwesomeIcon>
 																</button>
 															)}

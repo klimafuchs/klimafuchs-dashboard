@@ -41,6 +41,7 @@ export class AddPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isPinned: false
     }
   }
 
@@ -76,6 +77,7 @@ export class AddPost extends React.Component {
                 <Label check>
                   <Input
                   type="checkbox"
+                  value={this.state.isPinned}
                   onChange={this.handleCheckBoxChange}/>
                   {' '} Pin Post
                 </Label>
