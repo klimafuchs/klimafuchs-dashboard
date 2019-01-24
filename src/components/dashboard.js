@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Stats } from './stats'
-import { Nutzer } from './nutzer'
-import { Feed } from './feed'
-import { Notification } from './notification'
-import { Planning } from './planning'
+import { Stats } from './stats/stats'
+import { Nutzer } from './users/nutzer'
+import { Feed } from './feed/feed'
+import { Notification } from './notification/notification'
+import { Planning } from './season_management/planning'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Button } from 'reactstrap';
 import classnames from 'classnames';
 import ApolloClient from 'apollo-client';
@@ -84,7 +84,7 @@ class Dashboard extends Component {
             </NavItem>
             <NavItem style={{ cursor: "pointer" }}>
               <NavLink className={classnames({ active: this.state.activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
-                Challenges
+                Manage Seasons
               </NavLink>
             </NavItem>
             <Button className="ml-auto" outline color="primary" onClick={() => { localStorage.clear(); refreshPage() }} >Logout</Button>

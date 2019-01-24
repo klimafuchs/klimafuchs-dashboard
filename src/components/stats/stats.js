@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
 import { CardTitle, CardText, Jumbotron, Row, Col } from 'reactstrap';
 import Time from 'react-time-format';
-import { SeasonPlans } from './seasonPlans';
+import { SeasonPlans } from '../season_management/seasonPlans';
 
 const CURRENT_SEASON = gql`
 	query currentSeason {

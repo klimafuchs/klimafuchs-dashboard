@@ -18,12 +18,9 @@ export class App extends Component {
     const isLoggedIn = localStorage.getItem('token')
 
     return (
-      <div className="App">
-
-          <Container>
-            {isLoggedIn ? (<Dashboard />) : (<Login callBackRender={this.loginTokenChanged} />)}
-          </Container>
-      </div>
+      <Container className="App">
+        {isLoggedIn ? (<Dashboard />) : (<Login callBackRender={this.loginTokenChanged} />)}
+      </Container>
     )
   }
 }
