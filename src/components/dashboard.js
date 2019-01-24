@@ -88,7 +88,7 @@ class Dashboard extends Component {
                 Manage Seasons
               </NavLink>
             </NavItem>
-            <Button className="ml-auto" color="primary" onClick={() => { localStorage.clear(); refreshPage() }} >Logout</Button>
+            <Button className="ml-auto mb-1" color="primary" onClick={() => { localStorage.clear(); refreshPage() }} >Logout</Button>
           </Nav>
           <TabContent className={`tab-content-bg p-3 mb-5`} activeTab={this.state.activeTab}>
             <TabPane tabId="1">

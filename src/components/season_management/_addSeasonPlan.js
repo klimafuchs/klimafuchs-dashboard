@@ -108,7 +108,7 @@ export class AddSeasonPlan extends React.Component {
 									}) => (
 											<div>
 												{/* <label {...getLabelProps()}>Themenwoche</label> */}
-												<Input className="px-2 my-2 border-0" placeholder="start typing..." {...getInputProps()} />
+												<Input className="px-2 my-2 border-0 rounded" placeholder="start typing..." {...getInputProps()} />
 
 												<ul {...getMenuProps()}
 													className="p-0 pr-4 w-100 bg-light shadow-sm position-absolute"
@@ -158,7 +158,7 @@ export class AddSeasonPlan extends React.Component {
 							</Col>
 
 							<Col>
-								<Input className="px-2 my-2 border-0"
+								<Input className="px-2 my-2 border-0 rounded"
 									placeholder="duration in days"
 									type="number" min="1"
 									style={{ textAlign: 'center' }}
@@ -176,7 +176,7 @@ export class AddSeasonPlan extends React.Component {
 									}
 									}
 								</Query>
-								<Input className="px-2 my-2 border-0"
+								<Input className="px-2 my-2 border-0 rounded"
 									placeholder="position in season"
 									type="number" min="1"
 									style={{ textAlign: 'center' }}

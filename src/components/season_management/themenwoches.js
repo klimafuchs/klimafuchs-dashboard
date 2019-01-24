@@ -63,7 +63,7 @@ export class Themenwoches extends React.Component {
                       this.state.themenwoche ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben")
                     }}>
                     <FormGroup>
-                      <Input className="text-center border-bottom rounded-0" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
+                      <Input className="text-center rounded-0" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
                     </FormGroup>
                     <Button className="bg-light border-0" type="submit">
                       <FontAwesomeIcon className="text-primary" style={{ fontSize: '30px' }} icon={faPlus} />

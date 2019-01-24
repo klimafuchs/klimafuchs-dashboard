@@ -5,7 +5,7 @@ import { Row, Col, Card, CardTitle, CardText } from 'reactstrap';
 import { AddPost } from './_addpost';
 import Time from 'react-time-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const FEED = gql`
     query {
@@ -82,8 +82,8 @@ export class Feed extends React.Component {
 										<Col xs="12" lg="12">
 											<Card
 												body
-												className={`text-left pb-1 my-1 post ${ post.isPinned ? "border border-primary" : null}`}
-												>
+												className={`text-left pb-1 my-1 post ${post.isPinned ? "border border-primary" : null}`}
+											>
 
 												<Mutation mutation={DELETE_POST}>
 													{(deletePost, { data, _ }) => (
@@ -105,7 +105,7 @@ export class Feed extends React.Component {
 												</Mutation>
 
 												{post.isPinned ? <span className="text-center text-primary font-italic font-weight-bold">Pinned Content</span> : null}
-												
+
 												<CardTitle>
 													Title: {post.title}
 												</CardTitle>
