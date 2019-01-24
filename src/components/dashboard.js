@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Stats } from './stats/stats'
 import { Nutzer } from './users/nutzer'
 import { Feed } from './feed/feed'
-import { Notification } from './notification/notification'
+/* import { Notification } from './notification/notification' */
 import { Planning } from './season_management/planning'
-import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Media } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Button } from 'reactstrap';
 import classnames from 'classnames';
 import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
@@ -60,32 +60,31 @@ class Dashboard extends Component {
     return (
       <ApolloProvider client={client}>
         <div className="mt-5">
-          <img className = "col-2" src="/logo.png" />
+          <img className = "col-2" src="/logo.png" alt="logo.png missing or misplaced" />
           <h1 className="pb-5 font-weight-bold">Admin-Dashboard</h1>
           <Nav tabs>
             <NavItem className="border-0" style={{ cursor: "pointer" }}>
-              <NavLink className={classnames({
-                active: this.state.activeTab === '1', inactive: this.state.activeTab != '1'})} onClick={() => { this.toggle('1'); }}>
+              <NavLink className={classnames({active: this.state.activeTab === '1', inactive: this.state.activeTab !== '1'})} onClick={() => { this.toggle('1'); }}>
                 Dashboard
               </NavLink>
             </NavItem>
             <NavItem style={{ cursor: "pointer" }}>
-              <NavLink className={classnames({ active: this.state.activeTab === '2', inactive: this.state.activeTab != '2' })} onClick={() => { this.toggle('2'); }}>
+              <NavLink className={classnames({ active: this.state.activeTab === '2', inactive: this.state.activeTab !== '2' })} onClick={() => { this.toggle('2'); }}>
                 Nutzerverwaltung
               </NavLink>
             </NavItem>
             <NavItem style={{ cursor: "pointer" }}>
-              <NavLink className={classnames({ active: this.state.activeTab === '3', inactive: this.state.activeTab != '3' })} onClick={() => { this.toggle('3'); }}>
+              <NavLink className={classnames({ active: this.state.activeTab === '3', inactive: this.state.activeTab !== '3' })} onClick={() => { this.toggle('3'); }}>
                 Feed
               </NavLink>
             </NavItem>
 {/*             <NavItem style={{ cursor: "pointer" }}>
-              <NavLink className={classnames({ active: this.state.activeTab === '4', inactive: this.state.activeTab != '4' })} onClick={() => { this.toggle('4'); }}>
+              <NavLink className={classnames({ active: this.state.activeTab === '4', inactive: this.state.activeTab !== '4' })} onClick={() => { this.toggle('4'); }}>
                 Notification
               </NavLink>
             </NavItem> */}
             <NavItem style={{ cursor: "pointer" }}>
-              <NavLink className={classnames({ active: this.state.activeTab === '5', inactive: this.state.activeTab != '5' })} onClick={() => { this.toggle('5'); }}>
+              <NavLink className={classnames({ active: this.state.activeTab === '5', inactive: this.state.activeTab !== '5' })} onClick={() => { this.toggle('5'); }}>
                 Manage Seasons
               </NavLink>
             </NavItem>

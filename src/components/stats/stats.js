@@ -20,23 +20,6 @@ const CURRENT_SEASON = gql`
 	}
  `
 
-const SEASON_PLANS = gql`
-	query seasonPlans { 
-		seasonPlans {
-			id
-				themenwoche {
-					title
-				}
-			duration
-			position
-			season {
-				id
-			}
-		}
-	}
-`
-
-
 export class Stats extends React.Component {
 
 	secondsInDays = (seconds) => {
@@ -52,7 +35,6 @@ export class Stats extends React.Component {
 					{({ loading, error, data, refetch }) => {
 						if (loading) return <div>its loading</div>;
 						if (error) return <div>${error.message}</div>;
-						let CurrentSeasonID = data.currentSeason.id
 						return (
 							<div>
 

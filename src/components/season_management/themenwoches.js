@@ -60,7 +60,7 @@ export class Themenwoches extends React.Component {
                   <Form
                     onSubmit={e => {
                       e.preventDefault()
-                      { (this.state.themenwoche) ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben") }
+                      this.state.themenwoche ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben")
                     }}>
                     <FormGroup>
                       <Input className="text-center border-bottom rounded-0" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>

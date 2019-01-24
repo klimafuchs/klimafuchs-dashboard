@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Button, Table } from 'reactstrap';
+import { Table } from 'reactstrap';
 import { ModalEditNutzer } from './_modalEditNutzer'
 
 const USER_LIST = gql`

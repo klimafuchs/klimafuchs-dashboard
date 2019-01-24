@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { Themenwoches } from './themenwoches'
 import { Seasons } from './seasons'
 
