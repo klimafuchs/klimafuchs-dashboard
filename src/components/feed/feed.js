@@ -82,13 +82,14 @@ export class Feed extends React.Component {
 										<Col xs="12" lg="12">
 											<Card
 												body
-												className={`text-left pb-1 ${ post.isPinned ? "border border-primary" : null}`}
+												className={`text-left pb-1 my-1 post ${ post.isPinned ? "border border-primary" : null}`}
 												>
 
 												<Mutation mutation={DELETE_POST}>
 													{(deletePost, { data, _ }) => (
 														<div className="position-absolute" style={{ right: '5px', top: '5px' }}>
 															<FontAwesomeIcon
+																className="text-primary"
 																style={{ fontSize: '16px', cursor: "pointer" }}
 																icon={faTimes}
 																onClick={async e => {
@@ -111,13 +112,13 @@ export class Feed extends React.Component {
 												<CardText>
 													Text: {post.body}
 												</CardText>
-												<CardText className="small font-italic">
+												<span className="annotation font-italic">
 													Author: {post.author.screenName},
 													User-ID: {post.author.id},
 													Post-ID: {post.id},
 													IsPinned?: {String(post.isPinned)},
 													<Time value={post.dateCreated} format="DD.MM.YYYY hh:mm:ss"></Time>
-												</CardText>
+												</span>
 											</Card>
 										</Col>
 										{post.comments ? post.comments.map(comment => (
@@ -132,6 +133,7 @@ export class Feed extends React.Component {
 															{(deleteComment, { data, _ }) => (
 																<div className="position-absolute" style={{ right: '5px', top: '5px' }}>
 																	<FontAwesomeIcon
+																		className="text-primary"
 																		style={{ fontSize: '14px', cursor: "pointer" }}
 																		icon={faTimes}
 																		onClick={async e => {
@@ -145,14 +147,14 @@ export class Feed extends React.Component {
 																</div>
 															)}
 														</Mutation>
-														<CardText>
+														<CardText className="mb-0 mt-2">
 															{comment.body}
 														</CardText>
-														<span className="small font-italic">
+														<span className="mt-0 annotation font-italic">
 															Author: {comment.author.screenName}, User-ID: {comment.author.id}, <Time value={comment.dateCreated} format="DD.MM.YYYY, hh:mm:ss"></Time>, Comment-ID: {comment.id}
 														</span>
 
-													</Col>
+													</ Col>
 												</Row>
 											</Col>
 										))

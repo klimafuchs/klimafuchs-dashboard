@@ -75,7 +75,7 @@ export class Seasons extends React.Component {
                           </Mutation>
 
                         </CardTitle>
-                        <CardText className="small">
+                        <CardText className="">
                           Season starts at: <Time value={season.startDate} format="DD.MM.YYYY"></Time> |
                           First Topicweek starts at: <Time value={season.startOffsetDate} format="DD.MM.YYYY"></Time> |
                           Season ends at: <Time value={season.endDate} format="DD.MM.YYYY"></Time> |

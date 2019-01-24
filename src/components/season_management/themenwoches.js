@@ -47,15 +47,15 @@ export class Themenwoches extends React.Component {
                   data.themenwoches.map(themenwoche => (
 
                     <Card
-                      className="my-1 p-3 border-primary"
+                      className="my-2 p-3 border-secondary"
                       key={themenwoche.title}
                     >
                       <CardTitle className="mb-0">{themenwoche.title}</CardTitle>
-                      <CardText className="small">{themenwoche.content}</CardText>
+                      <CardText className="">{themenwoche.content}</CardText>
                     </Card>
                   ))
                 }
-                <Card body className="border-primary">
+                <Card body className="border-0">
                   <CardTitle>Themenwoche im Wiki erstellen</CardTitle>
                   <Form
                     onSubmit={e => {
@@ -63,7 +63,7 @@ export class Themenwoches extends React.Component {
                       { (this.state.themenwoche) ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben") }
                     }}>
                     <FormGroup>
-                      <Input className="text-center border-left-0 rounded-0 border-right-0 border-top-0" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
+                      <Input className="text-center border-bottom rounded-0" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
                     </FormGroup>
                     <Button className="bg-light border-0" type="submit">
                       <FontAwesomeIcon className="text-primary" style={{ fontSize: '30px' }} icon={faPlus} />

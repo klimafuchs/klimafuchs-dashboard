@@ -79,11 +79,11 @@ class Dashboard extends Component {
                 Feed
               </NavLink>
             </NavItem>
-            <NavItem style={{ cursor: "pointer" }}>
+{/*             <NavItem style={{ cursor: "pointer" }}>
               <NavLink className={classnames({ active: this.state.activeTab === '4', inactive: this.state.activeTab != '4' })} onClick={() => { this.toggle('4'); }}>
                 Notification
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem style={{ cursor: "pointer" }}>
               <NavLink className={classnames({ active: this.state.activeTab === '5', inactive: this.state.activeTab != '5' })} onClick={() => { this.toggle('5'); }}>
                 Manage Seasons
@@ -91,7 +91,7 @@ class Dashboard extends Component {
             </NavItem>
             <Button className="ml-auto" color="primary" onClick={() => { localStorage.clear(); refreshPage() }} >Logout</Button>
           </Nav>
-          <TabContent className={`tab-content-bg p-3`} activeTab={this.state.activeTab}>
+          <TabContent className={`tab-content-bg p-3 mb-5`} activeTab={this.state.activeTab}>
             <TabPane tabId="1">
               <Stats />
             </TabPane>
@@ -101,9 +101,9 @@ class Dashboard extends Component {
             <TabPane tabId="3">
               <Feed />
             </TabPane>
-            <TabPane tabId="4">
+{/*             <TabPane tabId="4">
               <Notification />
-            </TabPane>
+            </TabPane> */}
             <TabPane tabId="5">
               <Planning />
             </TabPane>

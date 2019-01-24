@@ -85,7 +85,7 @@ export class AddSeasonPlan extends React.Component {
 								refetchQueries: [{ query: SEASON_PLANS }]
 							}).catch(error => alert(error))
 					}}>
-						<div className="small font-italic text-left ml-2" >
+						<div className="font-italic text-left ml-2" >
 							<span>Add a Themenwoche</span>
 						</div>
 

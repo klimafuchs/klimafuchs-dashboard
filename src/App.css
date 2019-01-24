@@ -38,6 +38,7 @@ h1 {
 
 h2 {
   font-size: 1.3em;
+  color: rgb(141,195,219, 1) !important;
 }
 
 h3 {
@@ -55,11 +56,25 @@ h5 {
 
 input, select, textarea, label {
   font-size: .85em !important;
+  border: 0 !important;
+  border-color:  rgba(171, 209, 0, 0.5);
 }
 
 .form-control:focus, .btn:focus {
   border-color: rgba(171, 209, 0, 0.5);
   box-shadow: inset 0 1px 1px rgba(171, 209, 0, 0.5), 0 0 4px rgba(171, 209, 0, 0.5);
+}
+
+.post {
+  border-color: rgba(141,195,219, .3) !important;
+}
+
+.annotation {
+  font-size: .7em !important;
+}
+
+.card-text {
+  font-size: .85em !important;
 }
 
 .bg-primary {
@@ -76,6 +91,10 @@ input, select, textarea, label {
 
 .border-primary {
   border-color: #ABD100 !important;
+}
+
+.border-secondary {
+  border-color: rgba(171, 209, 0, 0.3) !important;
 }
 
 .btn-primary {

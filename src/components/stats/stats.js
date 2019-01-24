@@ -62,12 +62,17 @@ export class Stats extends React.Component {
 										{data.currentSeason.title}
 										
 									</CardTitle>
-									<CardText className="small">
+									<CardText className="">
 										Season starts at: <Time value={data.currentSeason.startDate} format="DD.MM.YYYY"></Time> |
                           First Topicweek starts at: <Time value={data.currentSeason.startOffsetDate} format="DD.MM.YYYY"></Time> |
                           Season ends at: <Time value={data.currentSeason.endDate} format="DD.MM.YYYY"></Time> |
                           ID: {data.currentSeason.id}
 									</CardText>
+									<Row>
+										<Col>Topicweek</Col>
+										<Col>Duration</Col>
+										<Col>Position</Col>
+									</Row>
 									<SeasonPlans season={data.currentSeason} />
 								</Jumbotron>
 
