@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Button, Table } from 'reactstrap';
-import { ModalEditNutzer } from './modalEditNutzer'
+import { ModalEditNutzer } from './_modalEditNutzer'
 
 const USER_LIST = gql`
 	query {
@@ -38,11 +38,11 @@ export class Nutzer extends Component {
 									<th>Screenname</th>
 									<th>E-Mail confirmed</th>
 									<th>is Banned?</th>
-									<th>Avatar</th>
+									{/* <th>Avatar</th> */}
 									<th>Role</th>
 								</tr>
 							</thead>
-							<tbody className="small">
+							<tbody className="">
 								{data.users.map(user => (
 									<tr key={user.id}>
 										<th className="align-middle" scope="row">
@@ -70,11 +70,11 @@ export class Nutzer extends Component {
 												{String(user.isBanned)}
 											</option>
 										</th>
-										<th className="align-middle">
+{/* 										<th className="align-middle">
 											<option key={user.id}>
 												{user.avatar}
 											</option>
-										</th>
+										</th> */}
 										<th className="align-middle">
 											<option key={user.id}>
 												{(user.role === 0)? "user" : "admin"}
@@ -84,7 +84,6 @@ export class Nutzer extends Component {
 											<ModalEditNutzer user={user} />
 										</th>
 										<th className="align-middle">
-											<Button className="danger">Delete</Button>
 										</th>
 									</tr>
 								))}

@@ -5,9 +5,9 @@ import { CardTitle, CardText, Jumbotron } from 'reactstrap';
 import Time from 'react-time-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { ModalEditSeason } from './modalEditSeason';
-import { AddSeasonPlan } from './addSeasonPlan';
-import { SeasonPlans } from './seasonPlans';
+import { ModalEditSeason } from './_modalEditAddSeason';
+import { AddSeasonPlan } from './_addSeasonPlan';
+import { SeasonPlans } from './_seasonPlans';
 
 const SEASONS_LIST = gql`
 	query {
@@ -33,7 +33,7 @@ export class Seasons extends React.Component {
     return (
       <div>
 
-        <h3>Seasons</h3>
+        <h2>Seasons</h2>
 
         <Query query={SEASONS_LIST}>
 
@@ -49,7 +49,7 @@ export class Seasons extends React.Component {
                       return (new Date(a.startDate).getTime()) - (new Date(b.startDate).getTime());
                     })
                     .map(season => (
-                      <Jumbotron className={`shadow my-3 py-4 px-4 ${(( new Date(season.startDate).getTime() < Date.now() && new Date(season.endDate).getTime() > Date.now()) ? null : "bg-light")}`}  key={season.id}>
+                      <Jumbotron className={`shadow-sm my-3 py-4 px-4 ${(( new Date(season.startDate).getTime() < Date.now() && new Date(season.endDate).getTime() > Date.now()) ? "bg-primary" : "bg-light")}`}  key={season.id}>
                       
                         <CardTitle>
                           {season.title}

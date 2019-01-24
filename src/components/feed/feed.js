@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 import { Row, Col, Card, CardTitle, CardText } from 'reactstrap';
-import { AddPost } from './addpost';
+import { AddPost } from './_addpost';
 import Time from 'react-time-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -82,7 +82,7 @@ export class Feed extends React.Component {
 										<Col xs="12" lg="12">
 											<Card
 												body
-												className={`shadow text-left pb-1 ${ post.isPinned ? "border border-primary" : null}`}
+												className={`text-left pb-1 ${ post.isPinned ? "border border-primary" : null}`}
 												>
 
 												<Mutation mutation={DELETE_POST}>
@@ -127,7 +127,7 @@ export class Feed extends React.Component {
 													<Col xs="2">
 
 													</Col>
-													<Col xs="10" className="shadow bg-light mr-0">
+													<Col xs="10" className="mr-0">
 														<Mutation mutation={DELETE_COMMENT}>
 															{(deleteComment, { data, _ }) => (
 																<div className="position-absolute" style={{ right: '5px', top: '5px' }}>

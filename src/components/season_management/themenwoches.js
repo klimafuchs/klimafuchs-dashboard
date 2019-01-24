@@ -34,7 +34,7 @@ export class Themenwoches extends React.Component {
 
       <div>
 
-        <h3>Themenwochen</h3>
+        <h2>Themenwochen</h2>
 
         <Query query={THEMENWOCHES_LIST}>
 
@@ -47,17 +47,15 @@ export class Themenwoches extends React.Component {
                   data.themenwoches.map(themenwoche => (
 
                     <Card
-                      className="my-1 p-3 shadow-sm"
+                      className="my-1 p-3 border-primary"
                       key={themenwoche.title}
-                      body
-                      inverse style={{ backgroundColor: '#333', borderColor: '#333' }}
                     >
                       <CardTitle className="mb-0">{themenwoche.title}</CardTitle>
                       <CardText className="small">{themenwoche.content}</CardText>
                     </Card>
                   ))
                 }
-                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                <Card body className="border-primary">
                   <CardTitle>Themenwoche im Wiki erstellen</CardTitle>
                   <Form
                     onSubmit={e => {
@@ -65,9 +63,9 @@ export class Themenwoches extends React.Component {
                       { (this.state.themenwoche) ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben") }
                     }}>
                     <FormGroup>
-                      <Input className="text-center" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
+                      <Input className="text-center border-left-0 rounded-0 border-right-0 border-top-0" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>
                     </FormGroup>
-                    <Button className="bg-light" type="submit">
+                    <Button className="bg-light border-0" type="submit">
                       <FontAwesomeIcon className="text-primary" style={{ fontSize: '30px' }} icon={faPlus} />
                     </Button>
                   </Form>

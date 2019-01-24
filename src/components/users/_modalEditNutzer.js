@@ -33,7 +33,7 @@ export class ModalEditNutzer extends React.Component {
 	render() {
 		return (
 			<div>
-				<Button className="btn-block" color="warning" onClick={this.toggle}>Edit</Button>
+				<Button className="btn-block" color="primary" onClick={this.toggle}>Edit</Button>
 				<Mutation mutation={UPDATE_USER_DANGER}>
 					{(changeUser, { data }) => (
 

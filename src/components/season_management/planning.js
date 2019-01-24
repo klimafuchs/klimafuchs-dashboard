@@ -8,8 +8,6 @@ export class Planning extends React.Component {
     render() {
 
         return (
-
-            <Container>
                 <Row>
                     <Col xs="12" lg="8">
                         <Seasons />
@@ -18,8 +16,6 @@ export class Planning extends React.Component {
                         <Themenwoches />
                     </Col>
                 </Row>
-            </Container>
-
         )
     }
 }

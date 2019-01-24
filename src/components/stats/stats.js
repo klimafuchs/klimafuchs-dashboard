@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo';
 import { CardTitle, CardText, Jumbotron, Row, Col } from 'reactstrap';
 import Time from 'react-time-format';
-import { SeasonPlans } from '../season_management/seasonPlans';
+import { SeasonPlans } from '../season_management/_seasonPlans';
 
 const CURRENT_SEASON = gql`
 	query currentSeason {
@@ -47,7 +47,7 @@ export class Stats extends React.Component {
 	render() {
 		return (
 			<div>
-				<h3>Current Season</h3>
+				<h2>Current Season</h2>
 				<Query query={CURRENT_SEASON}>
 					{({ loading, error, data, refetch }) => {
 						if (loading) return <div>its loading</div>;
@@ -56,7 +56,7 @@ export class Stats extends React.Component {
 						return (
 							<div>
 
-								<Jumbotron className={`shadow my-3 py-4 px-4 `} key={data.currentSeason.id}>
+								<Jumbotron className={`shadow-sm my-3 py-4 px-4 `} key={data.currentSeason.id}>
 
 									<CardTitle>
 										{data.currentSeason.title}

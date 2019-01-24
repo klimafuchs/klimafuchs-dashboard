@@ -3,10 +3,96 @@
 }
 
 .btn {
-	font-size: inherit;
+  font-size: inherit;
+}
+
+.table {
+  font-size: .8em;
+  font-weight: 300 !important;
 }
 
 .table td, .table th {
-	padding: .25em;
+  padding: .25em;
   border-top: none;
+}
+
+.tab-content-bg {
+  background-color: white;
+}
+
+.nav-tabs .nav-link {
+  border: 0px !important;
+}
+
+.nav-tabs {
+  border-bottom: 0px !important;
+}
+
+.inactive {
+  color: white !important;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+h4 {
+  font-size: 1em;
+
+}
+h5 {
+  font-size: .95em;
+  font-weight: 600;
+}
+
+input, select, textarea, label {
+  font-size: .85em !important;
+}
+
+.form-control:focus, .btn:focus {
+  border-color: rgba(171, 209, 0, 0.5);
+  box-shadow: inset 0 1px 1px rgba(171, 209, 0, 0.5), 0 0 4px rgba(171, 209, 0, 0.5);
+}
+
+.bg-primary {
+  background-color: rgba(141,195,219, .3) !important;
+}
+
+.bg-light {
+  background-color: rgb(141,195,219, .3) !important;
+}
+
+.text-primary {
+  color: #ABD100 !important;
+}
+
+.border-primary {
+  border-color: #ABD100 !important;
+}
+
+.btn-primary {
+  background-color: #ABD100 !important;
+  border-color: #ABD100 !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  background-color: rgba(171, 209, 0, 0.5) !important;
+  border: none !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #8DC3DB;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }

@@ -70,7 +70,7 @@ export class SeasonPlans extends React.Component {
 															{(deleteSeasonPlan, { data, _ }) => (
 																<button
 																	type="submit"
-																	className="btn btn-link"
+																	className="btn btn-link text-primary"
 																	onClick={async e => {
 																		if (window.confirm('Delete the item?')) {
 																			await deleteSeasonPlan({ variables: { spId: seasonPlan.id } });
