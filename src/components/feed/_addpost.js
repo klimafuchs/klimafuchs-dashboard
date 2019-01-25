@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Button, FormGroup, Label, Input, Form } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Alert from 'react-s-alert'
 
 const CUSTOM_POST = gql`
   mutation CustomPost($title:String!, $body:String!, $isPinned:Boolean!) {
@@ -41,7 +42,9 @@ export class AddPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPinned: false
+      isPinned: false,
+      title: "",
+      body: ""
     }
   }
 
@@ -59,6 +62,11 @@ export class AddPost extends React.Component {
             <h2 className="text-center">Add Custom Post</h2>
             <Form onSubmit={e => {
               e.preventDefault();
+              if(!(this.state.title !== "" && this.state.body !== "")) {
+                Alert.warning("Bitte geben Sie Titel und Text ein!", {
+                  position: 'top', effect: 'slide', timeout: '5000'
+              })
+              }
               customPost({
                 variables: { title: this.state.title, body: this.state.body, isPinned: this.state.isPinned },
                 refetchQueries: [{ query: FEED }],

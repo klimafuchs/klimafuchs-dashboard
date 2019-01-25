@@ -11,7 +11,7 @@ const CURRENT_SEASON = gql`
 			id
 		startDate
 		startOffsetDate
-	t	endDate
+		endDate
 		title
 			seasonPlan {
 				id
@@ -39,7 +39,7 @@ export class Stats extends React.Component {
 							<div>
 								
 
-								<Jumbotron className={`shadow-sm my-3 py-4 px-4 `} key={data.currentSeason.id}>
+								<Jumbotron className={`bg-light shadow-sm my-3 py-4 px-4 `} key={data.currentSeason.id}>
 
 									<CardTitle>
 										{data.currentSeason.title}

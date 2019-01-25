@@ -52,6 +52,9 @@ export class AddSeasonPlan extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			title: "",
+			duration: "",
+			position: ""
 		};
 	}
 
@@ -76,6 +79,12 @@ export class AddSeasonPlan extends React.Component {
 
 					<Form onSubmit={e => {
 						e.preventDefault();
+						if(!(this.state.title !== "" && this.state.duration !== "" && this.state.position !== "")) {
+							return(Alert.warning("Bitte wählen Sie eine Themenwoche aus und geben die Dauer sowie Position ein", {
+								position: 'top', effect: 'slide', timeout: '5000'
+						}))
+						return(false)
+					}
 						this.ValidatePositionOfNewSeasonPlan(this.state.position) ? Alert.warning('An dieser Position gibt es schon eine Themenwoche', {
 							position: 'top',
 							effect: 'slide'
