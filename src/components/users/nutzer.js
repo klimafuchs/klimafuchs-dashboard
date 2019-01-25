@@ -44,7 +44,7 @@ export class Nutzer extends Component {
 							</thead>
 							<tbody className="">
 								{data.users.map(user => (
-									<tr key={user.id}>
+									<tr className = {`${(user.role === 1)? "bg-light" : null}`} key={user.id}>
 										<th className="align-middle" scope="row">
 											<option key={user.id}>
 												{user.id}

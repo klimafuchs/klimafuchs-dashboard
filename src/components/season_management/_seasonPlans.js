@@ -3,7 +3,8 @@ import gql from 'graphql-tag'
 import { Row, Col } from 'reactstrap'
 import { Query, Mutation } from 'react-apollo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import confirm from 'reactstrap-confirm'
 
 const SEASON_PLANS = gql`
 	query seasonPlans { 
@@ -72,7 +73,7 @@ export class SeasonPlans extends React.Component {
 																	type="submit"
 																	className="btn btn-link text-primary"
 																	onClick={async e => {
-																		if (window.confirm('Delete the item?')) {
+																		if (await confirm()) {
 																			await deleteSeasonPlan({ variables: { spId: seasonPlan.id } });
 																			// wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
 																			refetch(); // refetch belongs to the surrounding FEED query

@@ -128,7 +128,7 @@ export class AddSeasonPlan extends React.Component {
 												<Input className="px-2 my-2 border-0 rounded" placeholder="start typing..." {...getInputProps()} />
 
 												<ul {...getMenuProps()}
-													className="p-0 pr-4 w-100 bg-light shadow-sm position-absolute"
+													className="p-0 pr-4 w-100 bg-white shadow-sm position-absolute"
 													style={{ zIndex: '2' }}>
 													{isOpen
 
@@ -146,14 +146,14 @@ export class AddSeasonPlan extends React.Component {
 																				.filter(item => !inputValue || item.title.toLowerCase().includes(inputValue.toLowerCase()))
 																				.map((item, index) => (
 
-																					<li className="p-1 text-left"
+																					<li className="p-2 text-left auto-complete-li"
 																						{...getItemProps({
 																							key: item.title,
 																							index,
 																							item,
 																							style: {
 																								color:
-																									highlightedIndex === index ? '#007BFF' : 'black',
+																									highlightedIndex === index ? 'rgba(171, 209, 0, 1)' : 'black',
 																								cursor: 'pointer',
 																								listStyleType: 'none'
 																							},

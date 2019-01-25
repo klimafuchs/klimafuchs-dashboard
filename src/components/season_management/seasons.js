@@ -8,7 +8,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { ModalEditSeason } from './_modalEditAddSeason';
 import { AddSeasonPlan } from './_addSeasonPlan';
 import { SeasonPlans } from './_seasonPlans';
-import Alert from 'react-s-alert'
+import Alert from 'react-s-alert';
+import confirm from 'reactstrap-confirm';
+
 
 const SEASONS_LIST = gql`
 	query {
@@ -64,10 +66,10 @@ export class Seasons extends React.Component {
                                   icon={faTimes}
                                   onClick={async e => {
 
-                                    if (window.confirm('Delete the item?')) {
+                                    if (await confirm()) {
                                       await deleteSeason({ variables: { sId: season.id } }).catch(error => Alert.error(`${error}`, {
                                         position: 'top', effect: 'slide', timeout: '5000'
-                                    }));
+                                    }));  
                                       // wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
                                       refetch(); // refetch belongs to the surrounding FEED query
                                     }

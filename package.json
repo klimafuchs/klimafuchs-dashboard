@@ -25,7 +25,8 @@
     "react-s-alert": "^1.4.1",
     "react-scripts": "1.1.5",
     "react-spring": "^7.2.10",
-    "reactstrap": "^6.4.0"
+    "reactstrap": "^6.4.0",
+    "reactstrap-confirm": "^1.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
