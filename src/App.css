@@ -93,11 +93,11 @@ input, select, textarea {
 }
 
 .bg-primary {
-  background-color: rgba(141,195,219, .3) !important;
+  background-color: rgba(141,195,219, .25) !important;
 }
 
 .bg-light {
-  background-color: rgb(141,195,219, .3) !important;
+  background-color: rgb(141,195,219, .2) !important;
 }
 
 .text-primary {

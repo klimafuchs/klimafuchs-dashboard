@@ -36,7 +36,7 @@ export class Login extends Component {
 			this.props.callBackRender(json.token)
 		}).catch(error => Alert.error(`${error}`, {
 			position: 'top', effect: 'slide', timeout: '5000'
-	}))
+		})).then(Alert.closeAll())
 	}
 
 	render() {
@@ -60,7 +60,7 @@ export class Login extends Component {
 							<Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 4 }}>
 								<Label className="text-white">Password</Label>
 								<Input className="rounded" type="password" name="password" value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} placeholder="Passwort" />
-							</Col>	
+							</Col>
 						</FormGroup>
 
 						<FormGroup>
