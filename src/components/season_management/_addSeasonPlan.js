@@ -1,6 +1,7 @@
 import React from 'react';
 import Downshift from 'downshift'
 import gql from 'graphql-tag'
+import Alert from 'react-s-alert';
 import { Query, Mutation } from 'react-apollo';
 import { Col, Row, Input, Form } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -43,7 +44,8 @@ const THEMENWOCHES_LIST = gql`
     themenwoches {            
       title
     }
-  }`
+	}
+`
 
 export class AddSeasonPlan extends React.Component {
 
@@ -65,6 +67,7 @@ export class AddSeasonPlan extends React.Component {
 		return positionArray.includes(parsedPosition)
 	}
 
+
 	render() {
 		return (
 
@@ -73,8 +76,10 @@ export class AddSeasonPlan extends React.Component {
 
 					<Form onSubmit={e => {
 						e.preventDefault();
-						this.ValidatePositionOfNewSeasonPlan(this.state.position) ? alert("position is already used")
-							:
+						this.ValidatePositionOfNewSeasonPlan(this.state.position) ? Alert.warning('An dieser Position gibt es schon eine Themenwoche', {
+							position: 'top',
+							effect: 'slide'
+						}) :
 							updateSeasonPlan({
 								variables: {
 									tID: this.state.title,
@@ -83,7 +88,10 @@ export class AddSeasonPlan extends React.Component {
 									pos: this.state.position
 								},
 								refetchQueries: [{ query: SEASON_PLANS }]
-							}).catch(error => alert(error))
+							}).catch(error => Alert.error(`${error}`, {
+								position: 'top',
+								effect: 'slide'
+							}))
 					}}>
 						<div className="font-italic text-left ml-2" >
 							<span>Add a Themenwoche</span>

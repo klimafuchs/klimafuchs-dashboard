@@ -67,11 +67,11 @@ export class AddPost extends React.Component {
 
               <FormGroup>
                 <Label for="exampleText">Titel</Label>
-                <Input  className="rounded" type="text" placeholder="Titel des Posts" onChange={(e) => this.setState({ title: e.target.value })} />
+                <Input className="rounded" type="text" placeholder="Titel des Posts" onChange={(e) => this.setState({ title: e.target.value })} />
               </FormGroup>
               <FormGroup>
                 <Label for="exampleText">Text</Label>
-                <Input type="textarea" placeholder="Text für den Post" onChange={(e) => this.setState({ body: e.target.value })} />
+                <Input className="rounded" type="textarea" placeholder="Text für den Post" onChange={(e) => this.setState({ body: e.target.value })} />
               </FormGroup>
               <FormGroup check className="mb-3">
                 <Label check>

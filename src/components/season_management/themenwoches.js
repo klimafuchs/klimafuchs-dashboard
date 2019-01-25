@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import { Card, CardTitle, CardText, Form, FormGroup, Input, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import Alert from 'react-s-alert'
 
 const THEMENWOCHES_LIST = gql`
 	query {
@@ -60,7 +61,9 @@ export class Themenwoches extends React.Component {
                   <Form
                     onSubmit={e => {
                       e.preventDefault()
-                      this.state.themenwoche ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : alert("Bitte einen Namen eingeben")
+                      this.state.themenwoche ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : Alert.info("Bitte geben Sie einen Namen für die Themenwoche ein!", {
+                        position: 'top', effect: 'slide', timeout: '5000'
+                    })
                     }}>
                     <FormGroup>
                       <Input className="text-center rounded-0" placeholder="Name der Themenwoche" onChange={(e) => this.setState({ themenwoche: e.target.value })}></Input>

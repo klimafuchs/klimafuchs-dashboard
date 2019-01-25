@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Modal, ModalHeader, ModalBody, ModalFooter, Col, FormGroup, Label, Input } from 'reactstrap';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import Alert from 'react-s-alert'
 
 const UPDATE_USER_DANGER = gql`
 	mutation ChangeUser($id:Int!, $name:String!, $isBanned:Boolean!) {
@@ -41,7 +42,9 @@ export class ModalEditNutzer extends React.Component {
 							<Form onSubmit={e => {
 								e.preventDefault();
 								changeUser({ variables: { name: this.state.screenName, id: this.props.user.id, isBanned: this.state.isBanned } })
-									.catch(error => alert(error));
+									.catch(error => Alert.error(`${error}`, {
+										position: 'top', effect: 'slide', timeout: '5000'
+								}));
 								this.toggle();
 							}}>
 								<ModalHeader toggle={this.toggle}>Edit User</ModalHeader>

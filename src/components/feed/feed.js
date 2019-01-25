@@ -6,6 +6,7 @@ import { AddPost } from './_addpost';
 import Time from 'react-time-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Alert from 'react-s-alert';
 
 const FEED = gql`
     query {
@@ -94,7 +95,9 @@ export class Feed extends React.Component {
 																icon={faTimes}
 																onClick={async e => {
 																	if (window.confirm('Delete the item?')) {
-																		await deletePost({ variables: { id: post.id } }).catch(error => alert(error));
+																		await deletePost({ variables: { id: post.id } }).catch(error => Alert.error(`${error}`, {
+																			position: 'top', effect: 'slide', timeout: '5000'
+																	}))
 																		// wait for the delete mutation to return, otherwise the deleted post will still be in the db when refetch() runs 
 																		refetch(); // refetch belongs to the surrounding FEED query
 																	}

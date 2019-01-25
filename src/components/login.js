@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import Alert from 'react-s-alert';
 
 export class Login extends Component {
 	constructor() {
@@ -33,10 +34,9 @@ export class Login extends Component {
 		}).then((json) => {
 			localStorage.setItem('token', json.token);
 			this.props.callBackRender(json.token)
-		}).catch((e) => {
-			alert(e.message)
-			// TODO markiere PW Feld
-		});
+		}).catch(error => Alert.error(`${error}`, {
+			position: 'top', effect: 'slide', timeout: '5000'
+	}))
 	}
 
 	render() {
