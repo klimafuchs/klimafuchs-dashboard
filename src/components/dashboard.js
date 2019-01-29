@@ -61,7 +61,7 @@ class Dashboard extends Component {
     return (
       <ApolloProvider client={client}>
         <div className="mt-5">
-          <img className = "col-2" src="/logo.png" alt="logo.png missing or misplaced" />
+          <img className = "col-2" src="./logo.png" alt="logo.png missing or misplaced" />
           <h1 className="pb-5 font-weight-bold">Admin-Dashboard</h1>
           <Nav tabs>
             <NavItem className="border-0" style={{ cursor: "pointer" }}>
