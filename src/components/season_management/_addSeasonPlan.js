@@ -81,7 +81,7 @@ export class AddSeasonPlan extends React.Component {
 						e.preventDefault();
 						if(!(this.state.title !== "" && this.state.duration !== "" && this.state.position !== "")) {
 							return(Alert.warning("Bitte wählen Sie eine Themenwoche aus und geben die Dauer sowie Position ein", {
-								position: 'top', effect: 'slide', timeout: '5000'
+								position: 'top', effect: 'slide', timeout: 3000
 						}))
 						return(false)
 					}

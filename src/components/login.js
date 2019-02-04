@@ -35,7 +35,7 @@ export class Login extends Component {
 			localStorage.setItem('token', json.token);
 			this.props.callBackRender(json.token)
 		}).catch(error => Alert.error(`${error}`, {
-			position: 'top', effect: 'slide', timeout: '5000'
+			position: 'top', effect: 'slide', timeout: 3000
 		})).then(Alert.closeAll())
 	}
 

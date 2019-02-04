@@ -64,7 +64,7 @@ export class AddPost extends React.Component {
               e.preventDefault();
               if (!(this.state.title !== "" && this.state.body !== "")) {
                 Alert.warning("Bitte geben Sie Titel und Text ein!", {
-                  position: 'top', effect: 'slide', timeout: '5000'
+                  position: 'top', timeout: 3000, effect: 'slide'
                 })
                 return(false)
               }

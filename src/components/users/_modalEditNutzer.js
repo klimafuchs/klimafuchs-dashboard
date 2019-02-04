@@ -43,7 +43,7 @@ export class ModalEditNutzer extends React.Component {
 								e.preventDefault();
 								changeUser({ variables: { name: this.state.screenName, id: this.props.user.id, isBanned: this.state.isBanned } })
 									.catch(error => Alert.error(`${error}`, {
-										position: 'top', effect: 'slide', timeout: '5000'
+										position: 'top', effect: 'slide', timeout: 3000
 								}));
 								this.toggle();
 							}}>

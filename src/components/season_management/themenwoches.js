@@ -62,7 +62,7 @@ export class Themenwoches extends React.Component {
                     onSubmit={e => {
                       e.preventDefault()
                       this.state.themenwoche ? window.open(this.wikiUrl(this.state.themenwoche), '_blank') : Alert.info("Bitte geben Sie einen Namen für die Themenwoche ein!", {
-                        position: 'top', effect: 'slide', timeout: '5000'
+                        position: 'top', effect: 'slide', timeout: 3000
                     })
                     }}>
                     <FormGroup>
