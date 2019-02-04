@@ -44,7 +44,7 @@ export class Login extends Component {
 			<div>
 
 				<Jumbotron className="bg-light">
-					<img className="col-2 mt-5" src="/logo.png" alt="logo.png missing or misplaced" />
+					<img className="col-2 mt-5" src="./logo.png" alt="logo.png missing or misplaced" />
 					<h1 className="pb-4 font-weight-bold">Admin-Dashboard</h1>
 					<h2 className="pb-2 font-weight-bold text-white">Login</h2>
 					<Form onSubmit={this.handleSubmit}>
