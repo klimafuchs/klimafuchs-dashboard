@@ -34,6 +34,7 @@ export class Stats extends React.Component {
 				<Query query={CURRENT_SEASON}>
 					{({ loading, error, data, refetch }) => {
 						if (loading) return <div>its loading</div>;
+						if(data.CURRENT_SEASON == null) return <div>no current season existing</div>
 						if (error) return <div>${error.message}</div>;
 						return (
 							<div>
