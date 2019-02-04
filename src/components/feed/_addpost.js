@@ -49,7 +49,7 @@ export class AddPost extends React.Component {
   }
 
   handleCheckBoxChange = (e) => {
-    this.setState({isPinned: e.target.checked})
+    this.setState({ isPinned: e.target.checked })
   }
 
   render() {
@@ -62,10 +62,11 @@ export class AddPost extends React.Component {
             <h2 className="text-center">Add Custom Post</h2>
             <Form onSubmit={e => {
               e.preventDefault();
-              if(!(this.state.title !== "" && this.state.body !== "")) {
+              if (!(this.state.title !== "" && this.state.body !== "")) {
                 Alert.warning("Bitte geben Sie Titel und Text ein!", {
                   position: 'top', effect: 'slide', timeout: '5000'
-              })
+                })
+                return(false)
               }
               customPost({
                 variables: { title: this.state.title, body: this.state.body, isPinned: this.state.isPinned },
@@ -84,9 +85,9 @@ export class AddPost extends React.Component {
               <FormGroup check className="mb-3">
                 <Label check>
                   <Input
-                  type="checkbox"
-                  value={this.state.isPinned}
-                  onChange={this.handleCheckBoxChange}/>
+                    type="checkbox"
+                    value={this.state.isPinned}
+                    onChange={this.handleCheckBoxChange} />
                   {' '} Pin Post
                 </Label>
               </FormGroup>
