@@ -14,7 +14,7 @@ export class Login extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		fetch('https://enviroommate.org/app-dev/api/login', {
+		fetch(process.env.REACT_APP_LOGIN_URL, {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

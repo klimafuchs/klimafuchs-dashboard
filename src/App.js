@@ -21,7 +21,7 @@ export class App extends Component {
     const isLoggedIn = localStorage.getItem('token')
 
     return (
-      <Container className="App">
+      <Container>
         {isLoggedIn ? (<Dashboard />) : (<Login callBackRender={this.loginTokenChanged} />)}
         <Alert stack={{ limit: 3 }} />
       </Container>

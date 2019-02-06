@@ -14,7 +14,7 @@ import { ApolloProvider } from 'react-apollo';
 import Alert from 'react-s-alert'
 
 const link = new HttpLink({
-  uri: 'https://enviroommate.org/app-dev/api/gql'
+  uri: process.env.REACT_APP_GRAPHQL_URL
 })
 
 const authLink = setContext((_, { headers }) => {

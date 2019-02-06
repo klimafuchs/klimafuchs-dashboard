@@ -8,10 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Alert from 'react-s-alert';
 import confirm from 'reactstrap-confirm';
-import {
-	CSSTransition,
-	TransitionGroup,
-} from 'react-transition-group';
+import { CSSTransition,	TransitionGroup } from 'react-transition-group';
 
 
 

@@ -26,7 +26,7 @@ export class Themenwoches extends React.Component {
 
   /* will break in production when URL changes. TODO */
   wikiUrl = (name) => {
-    let url = "https://enviroommate.org/wiki/index.php?title=" + name + "&action=edit&redlink=1"
+    let url = process.env.REACT_APP_WIKI_URL + "/index.php?title=" + name + "&action=edit&redlink=1"
     return (url)
   }
 
