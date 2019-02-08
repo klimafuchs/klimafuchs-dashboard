@@ -19,8 +19,12 @@
 .nav-tabs {
   border-bottom: 0px !important;
 }
-.inactive {
-  color: white !important;
+.nav-link {
+  color: white;
+}
+.nav-link:hover {
+  color: black;
+  background-color: rgba(255, 255, 255, .75)
 }
 
 h1 {

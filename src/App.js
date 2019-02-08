@@ -23,7 +23,7 @@ export class App extends Component {
     return (
       <Container>
         {isLoggedIn ? (<Dashboard />) : (<Login callBackRender={this.loginTokenChanged} />)}
-        <Alert stack={{ limit: 3 }} />
+        <Alert stack={{ limit: 2 }} />
       </Container>
     )
   }
