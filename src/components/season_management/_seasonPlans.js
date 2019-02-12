@@ -23,17 +23,16 @@ const SEASON_PLANS = gql`
 `
 
 const UPDATE_SEASONPLAN = gql`
-	mutation updateSeasonPlan($spId:Int!, $pos:Int!, $duration:Int!) {
-		updateSeasonPlan(seasonPlan:{
-			seasonPlanId:$spId,
-			position: $pos,
-			duration: $duration
-		}) {
-			id,
-			position,
-			duration
-		}
-	} 
+mutation udpateSeasonPlan($Id:Int!, $pos:Int, $duration:Int) {
+	updateSeasonPlan(seasonPlan:{
+		id: $Id,
+		position: $pos,
+		duration: $duration
+	}) {
+		position,
+		duration
+	}
+} 
 `
 
 const REMOVE_SEASON_PLAN = gql`
@@ -49,15 +48,21 @@ export class SeasonPlans extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			spID: "",
-			duration: "",
-			position: ""
+			seasonId: "",
+			themenwocheId: "",
+			position: "",
+			duration: ""
 		};
 	}
 
 	secondsInDays = (seconds) => {
 		let result = Math.round(seconds / 86400)
 		return ((result === 1) ? result + " day" : result + " days")
+	}
+
+	daysInSeconds = (days) => {
+		let result = Math.round(days * 86400)
+		return (result)
 	}
 
 	render() {
@@ -85,22 +90,46 @@ export class SeasonPlans extends React.Component {
 															</span>
 														</Col>
 														<Col className="d-flex align-items-center justify-content-center">
-															<button type="submit" className="btn btn-link text-primary">
-																<FontAwesomeIcon
-																	style={{ fontSize: '16px', cursor: "pointer" }}
-																	icon={faMinus}
-																>
-																</FontAwesomeIcon>
-															</button>
 
-															{this.secondsInDays(seasonPlan.duration)}
 
 															<Mutation mutation={UPDATE_SEASONPLAN}>
-																{(updateSeasonPlan, { data }) => (
+																{(udpateSeasonPlan, { data }) => (
 																	<button
-																		className="btn btn-link text-warning"
-																		onClick={
-																			console.log("test")
+																		className="btn btn-link text-primary"
+																		onClick={() =>
+																			udpateSeasonPlan({
+																				variables: {
+																					Id: seasonPlan.id,
+																					duration: seasonPlan.duration - this.daysInSeconds(1),
+																				},
+																				refetchQueries: [{ query: SEASON_PLANS }],
+																			})
+																		}>
+																		<FontAwesomeIcon
+																			style={{ fontSize: '16px', cursor: "pointer" }}
+																			icon={faMinus}
+																		>
+																		</FontAwesomeIcon>
+																	</button>
+																)}
+															</Mutation>
+
+															<span>
+																{this.secondsInDays(seasonPlan.duration)}
+															</span>
+
+															<Mutation mutation={UPDATE_SEASONPLAN}>
+																{(udpateSeasonPlan, { data }) => (
+																	<button
+																		className="btn btn-link text-primary"
+																		onClick={() =>
+																			udpateSeasonPlan({
+																				variables: {
+																					Id: seasonPlan.id,
+																					duration: seasonPlan.duration + this.daysInSeconds(1),
+																				},
+																				refetchQueries: [{ query: SEASON_PLANS }],
+																			})
 																		}>
 																		<FontAwesomeIcon
 																			style={{ fontSize: '16px', cursor: "pointer" }}
@@ -114,25 +143,52 @@ export class SeasonPlans extends React.Component {
 														</Col>
 
 														<Col className="d-flex align-items-center justify-content-center ">
-															<button type="submit" className="btn btn-link text-primary">
-																<FontAwesomeIcon
-																	style={{ fontSize: '16px', cursor: "pointer" }}
-																	icon={faMinus}
-																>
-																</FontAwesomeIcon>
-															</button>
+															<Mutation mutation={UPDATE_SEASONPLAN}>
+																{(udpateSeasonPlan, { data }) => (
+																	<button
+																		className="btn btn-link text-primary"
+																		onClick={() =>
+																			udpateSeasonPlan({
+																				variables: {
+																					Id: seasonPlan.id,
+																					pos: seasonPlan.position - 1,
+																				},
+																				refetchQueries: [{ query: SEASON_PLANS }],
+																			})
+																		}>
+																		<FontAwesomeIcon
+																			style={{ fontSize: '16px', cursor: "pointer" }}
+																			icon={faMinus}
+																		>
+																		</FontAwesomeIcon>
+																	</button>
+																)}
+															</Mutation>
 
 															<span>
 																{seasonPlan.position}
 															</span>
 
-															<button type="submit" className="btn btn-link text-primary">
-																<FontAwesomeIcon
-																	style={{ fontSize: '16px', cursor: "pointer" }}
-																	icon={faPlus}
-																>
-																</FontAwesomeIcon>
-															</button>
+															<Mutation mutation={UPDATE_SEASONPLAN}>
+																{(udpateSeasonPlan, { data }) => (
+																	<button
+																		className="btn btn-link text-primary"
+																		onClick={() =>
+																			udpateSeasonPlan({
+																				variables: {
+																					Id: seasonPlan.id,
+																					pos: seasonPlan.position + 1,
+																				},
+																				refetchQueries: [{ query: SEASON_PLANS }],
+																			})
+																		}>
+																		<FontAwesomeIcon
+																			style={{ fontSize: '16px', cursor: "pointer" }}
+																			icon={faPlus}
+																		>
+																		</FontAwesomeIcon>
+																	</button>)}
+															</Mutation>
 														</Col>
 
 														<Mutation mutation={REMOVE_SEASON_PLAN}>
