@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
-import { Row, Col, Card, CardTitle, CardText } from 'reactstrap';
+import { Row, Col, Card, CardTitle, CardText, CardImg } from 'reactstrap';
 import { AddPost } from './_addpost';
 import Time from 'react-time-format';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Alert from 'react-s-alert';
 import confirm from 'reactstrap-confirm';
 import { CSSTransition,	TransitionGroup } from 'react-transition-group';
+import { NULL } from 'graphql/language/kinds';
 
 
 
@@ -17,7 +18,10 @@ const FEED = gql`
 			posts {
 				id
 				title
-				body
+				image {
+					filename
+				}
+				body				
 				isPinned
 				dateCreated
 				author {
@@ -55,6 +59,8 @@ const DELETE_COMMENT = gql`
 		}
 	} 
 `
+
+const img_url = process.env.REACT_APP_IMG_URL
 
 export class Feed extends React.Component {
 
@@ -119,8 +125,10 @@ export class Feed extends React.Component {
 														</Mutation>
 
 														{post.isPinned ? <span className="text-center text-primary font-italic font-weight-bold">Pinned Content</span> : null}
-
-														<CardTitle>
+														
+														{post.image == null? null : <CardImg top width="100%" src={`${img_url}/${post.image.filename}`} alt="Card image cap" />}
+														
+														<CardTitle className="mt-3">
 															Title: {post.title}
 														</CardTitle>
 														<CardText>
