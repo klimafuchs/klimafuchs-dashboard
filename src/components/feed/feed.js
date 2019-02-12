@@ -9,9 +9,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Alert from 'react-s-alert';
 import confirm from 'reactstrap-confirm';
 import { CSSTransition,	TransitionGroup } from 'react-transition-group';
-import { NULL } from 'graphql/language/kinds';
-
-
 
 const FEED = gql`
     query {
