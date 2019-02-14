@@ -95,6 +95,10 @@ input, select, textarea {
   border-color: #ABD100 !important;
   border: none !important;
 }
+.page-link {
+  color: #ABD100 !important;
+  font-weight: 500;
+}
 .btn-primary:hover {
   background-color: rgba(171, 209, 0, 0.5) !important;
   border: none !important;
