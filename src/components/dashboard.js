@@ -53,24 +53,24 @@ class Dashboard extends Component {
     return (
       <Router>
         <ApolloProvider client={client}>
-        <Redirect to="dashboard/home" />
+        <Redirect to="/dashboard/home" />
           <div className="mt-5">
             <img className="col-2" src="./logo.png" alt="Klimafuchs-Logo" />
             <h1 className="pb-5 font-weight-bold">Admin-Dashboard</h1>
             <Nav tabs>
 
               <NavItem className="border-0" style={{ cursor: "pointer" }}>
-                <NavLink to="dashboard/home" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/dashboard/home" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Dashboard
                 </NavLink>
               </NavItem>
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="dashboard/users" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/dashboard/users" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Nutzerverwaltung
                 </NavLink>
               </NavItem>
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="dashboard/feed" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/dashboard/feed" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Feed
                 </NavLink>
               </NavItem>
@@ -80,7 +80,7 @@ class Dashboard extends Component {
                 </NavLink>
                 </NavItem> */}
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="dashboard/seasons" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/dashboard/seasons" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Manage Seasons
                 </NavLink>
               </NavItem>
@@ -88,10 +88,10 @@ class Dashboard extends Component {
             </Nav>
             <TabContent className={`tab-content-bg p-3 mb-5`} activeTab={this.state.activeTab}>
               <TabPane tabId="1">
-                <Route path="dashboard/home" component={Stats} />
-                <Route path="dashboard/users" component={Nutzer} />
-                <Route path="dashboard/feed" component={Feed} />
-                <Route path="dashboard/seasons" component={Planning} />
+                <Route path="/dashboard/home" component={Stats} />
+                <Route path="/dashboard/users" component={Nutzer} />
+                <Route path="/dashboard/feed" component={Feed} />
+                <Route path="/dashboard/seasons" component={Planning} />
               </TabPane>
             </TabContent>
           </div>
