@@ -37,7 +37,7 @@ const client = new ApolloClient({
 })
 
 function refreshPage() {
-  window.location.reload();
+  window.location.assign(process.env.REACT_APP_DASHBOARD_URL);
 }
 
 class Dashboard extends Component {
@@ -87,7 +87,7 @@ class Dashboard extends Component {
             </Nav>
             <TabContent className={`tab-content-bg p-3 mb-5`} activeTab={this.state.activeTab}>
               <TabPane tabId="1">
-                <Route exact path="/" component={Stats} />
+                <Route exact path="" component={Stats} />
                 <Route path="/stats" component={Stats} />
                 <Route path="/users" component={Nutzer} />
                 <Route path="/feed" component={Feed} />
