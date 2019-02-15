@@ -70,7 +70,7 @@ export class SeasonPlans extends React.Component {
 			<div>
 				<Query query={SEASON_PLANS}>
 					{({ loading, error, data, refetch }) => {
-						if (loading) return <div>its loading</div>;
+						if (loading) return <div><img className="col-1 pt-5 mt-5" src="./load-spinner.gif" alt="Klimafuchs-Logo" /></div>;
 						if (error) return <div>${error.message}</div>;
 						return (
 							<div>

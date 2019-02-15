@@ -27,7 +27,7 @@ export class Nutzer extends Component {
 		return (
 			<Query query={USER_LIST}>
 				{({ loading, error, data, refetch }) => {
-					if (loading) return <div>its loading</div>;
+					if (loading) return <div><img className="col-1 pt-5 mt-5" src="./load-spinner.gif" alt="Klimafuchs-Logo" /></div>;
 					if (error) return <div>${error.message}</div>;
 					return (
 						<Table className="border-top-0">
