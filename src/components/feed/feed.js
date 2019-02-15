@@ -12,41 +12,47 @@ import confirm from 'reactstrap-confirm';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const FEED = gql`
-    query FeedPage($page: ConnectionArgs!) {
-        paginatedPosts(connectionArgs: $page) {
-            page {
-                edges {
-                    node {
-                        id
-                        title
-                        image {
-                            filename
-                        }
-                        body
-                        isPinned
-                        dateCreated
-                        author {
-                            id
-                            userName
-                            screenName
-                            role
-                        }
-                        comments {
-                            id
-                            body
-                            dateCreated
-                            author {
-                                id
-                                userName
-                                screenName
-                            }
-                        }
-                    }
-                    cursor
-                }
+  query FeedPage($page: ConnectionArgs!) {
+    paginatedPosts(connectionArgs: $page) {
+      page {
+        edges {
+          node {
+            id
+            title
+            image {
+              filename
             }
+            body
+            isPinned
+            dateCreated
+            author {
+              id
+              userName
+              screenName
+              role
+            }
+            comments {
+              id,
+              author {
+                screenName
+              },
+              body,
+              children {
+                id
+              },
+              parent {
+                id
+              },
+              sentiment,
+              dateCreated,
+              currentUserLikesComment
+            }
+          }
+          cursor
         }
+      }
     }
+  }
 `
 const DELETE_POST = gql`
     mutation deletePost($id: Int!) {
