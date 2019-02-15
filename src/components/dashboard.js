@@ -37,7 +37,7 @@ const client = new ApolloClient({
 })
 
 function refreshPage() {
-  window.location.assign("/");
+  window.location.assign("/dashboard");
 }
 
 class Dashboard extends Component {
@@ -53,24 +53,24 @@ class Dashboard extends Component {
     return (
       <Router>
         <ApolloProvider client={client}>
-        <Redirect to="/stats" />
+        <Redirect to="/home" />
           <div className="mt-5">
             <img className="col-2" src="./logo.png" alt="Klimafuchs-Logo" />
             <h1 className="pb-5 font-weight-bold">Admin-Dashboard</h1>
             <Nav tabs>
 
               <NavItem className="border-0" style={{ cursor: "pointer" }}>
-                <NavLink to="/stats" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="./home" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Dashboard
                 </NavLink>
               </NavItem>
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="/users" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="./users" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Nutzerverwaltung
                 </NavLink>
               </NavItem>
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="/feed" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="./feed" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Feed
                 </NavLink>
               </NavItem>
@@ -80,7 +80,7 @@ class Dashboard extends Component {
                 </NavLink>
                 </NavItem> */}
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="/seasons" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="./seasons" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Manage Seasons
                 </NavLink>
               </NavItem>
@@ -88,10 +88,10 @@ class Dashboard extends Component {
             </Nav>
             <TabContent className={`tab-content-bg p-3 mb-5`} activeTab={this.state.activeTab}>
               <TabPane tabId="1">
-                <Route path="/stats" component={Stats} />
-                <Route path="/users" component={Nutzer} />
-                <Route path="/feed" component={Feed} />
-                <Route path="/seasons" component={Planning} />
+                <Route path="./home" component={Stats} />
+                <Route path="./users" component={Nutzer} />
+                <Route path="./feed" component={Feed} />
+                <Route path="./seasons" component={Planning} />
               </TabPane>
             </TabContent>
           </div>
