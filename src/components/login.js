@@ -12,8 +12,8 @@ export class Login extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(event) {
-		event.preventDefault();
+	handleSubmit(e) {
+		e.preventDefault();
 		fetch(process.env.REACT_APP_LOGIN_URL, {
 			method: 'POST',
 			headers: {
@@ -36,7 +36,9 @@ export class Login extends Component {
 			this.props.callBackRender(json.token)
 		}).catch(error => Alert.error(`${error}`, {
 			position: 'top', effect: 'slide', timeout: 3000
-		})).then(Alert.closeAll())
+		}))
+		.then(Alert.closeAll())
+		
 	}
 
 	render() {
