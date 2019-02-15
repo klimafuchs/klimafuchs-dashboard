@@ -55,7 +55,7 @@ class Dashboard extends Component {
         <ApolloProvider client={client}>
         <Redirect to="/dashboard/home" />
           <div className="mt-5">
-            <img className="col-2" src="./logo.png" alt="Klimafuchs-Logo" />
+            <img className="col-2" src="../logo.png" alt="Klimafuchs-Logo" />
             <h1 className="pb-5 font-weight-bold">Admin-Dashboard</h1>
             <Nav tabs>
 
