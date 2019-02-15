@@ -60,17 +60,17 @@ class Dashboard extends Component {
             <Nav tabs>
 
               <NavItem className="border-0" style={{ cursor: "pointer" }}>
-                <NavLink to="./home" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/home" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Dashboard
                 </NavLink>
               </NavItem>
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="./users" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/users" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Nutzerverwaltung
                 </NavLink>
               </NavItem>
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="./feed" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/feed" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Feed
                 </NavLink>
               </NavItem>
@@ -80,7 +80,7 @@ class Dashboard extends Component {
                 </NavLink>
                 </NavItem> */}
               <NavItem style={{ cursor: "pointer" }}>
-                <NavLink to="./seasons" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
+                <NavLink to="/seasons" className={`nav-link`} onClick={() => { Alert.closeAll() }}>
                   Manage Seasons
                 </NavLink>
               </NavItem>
@@ -88,10 +88,10 @@ class Dashboard extends Component {
             </Nav>
             <TabContent className={`tab-content-bg p-3 mb-5`} activeTab={this.state.activeTab}>
               <TabPane tabId="1">
-                <Route path="./home" component={Stats} />
-                <Route path="./users" component={Nutzer} />
-                <Route path="./feed" component={Feed} />
-                <Route path="./seasons" component={Planning} />
+                <Route path="/home" component={Stats} />
+                <Route path="/users" component={Nutzer} />
+                <Route path="/feed" component={Feed} />
+                <Route path="/seasons" component={Planning} />
               </TabPane>
             </TabContent>
           </div>
