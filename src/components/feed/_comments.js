@@ -90,7 +90,7 @@ export class Comments extends React.Component {
               )}
             </Mutation>
             <CardText className="mb-0 mt-2">
-              {comment.body}, {treeLevel}
+              {comment.body}
             </CardText>
 
             <span className="mt-0 annotation font-italic">
@@ -109,7 +109,7 @@ export class Comments extends React.Component {
 
     const allComments = this.props.comments
     return (
-      <div>
+      <div className="container">
         {this.renderCommentForest(this.buildCommentForest(allComments))}
 
       </div>

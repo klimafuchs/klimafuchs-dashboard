@@ -79,7 +79,7 @@ export class Feed extends React.Component {
         fetchPolicy="cache-and-network"
       >
         {({ loading, error, data, refetch, fetchMore }) => {
-          if (loading) return <div><img className="col-1 pt-5 mt-5" src="../load-spinner.gif" alt="Klimafuchs-Logo" /></div>;
+          if (!data.paginatedPosts && loading) return <div><img className="col-1 pt-5 mt-5" src="../load-spinner.gif" alt="Klimafuchs-Logo" /></div>;
           if (error) return <div>${error.message}</div>;
           return (
 
