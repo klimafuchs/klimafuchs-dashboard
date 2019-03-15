@@ -34,7 +34,7 @@ export class Stats extends React.Component {
 				<Query query={CURRENT_SEASON}>
 					{({ loading, error, data, refetch }) => {
 						if (loading) return <div><img className="col-1 pt-5 mt-5" src="./load-spinner.gif" alt="Klimafuchs-Logo" /></div>;
-						if(data.currentSeason == null) return <div>no current season existing</div>
+						if(data == undefined) return <div>no current season existing</div>
 						if (error) return <div>${error.message}</div>;
 						return (
 							<div>
