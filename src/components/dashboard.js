@@ -56,7 +56,7 @@ class Dashboard extends Component {
         <Redirect to="/dashboard/home" />
           <div className="mt-5">
             <img className="col-2" src="../logo.png" alt="Klimafuchs-Logo" />
-            <h1 className="pb-5 font-weight-bold">Admin-Dashboard</h1>
+            <h1 className="pb-5 font-weight-bold">Admin-Dashboard - Push-Test</h1>
             <Nav tabs>
 
               <NavItem className="border-0" style={{ cursor: "pointer" }}>
