@@ -11,14 +11,14 @@ const ADD_SEASONPLAN = gql`
 	mutation addSeasonPlan($sID:Int!, $tID:String!, $pos:Int!, $duration:Int!) {
 		updateSeasonPlan(seasonPlan:{
 			seasonId: $sID,
-			themenwocheId: $tID,
+			themaName: $tID,
 			position: $pos,
 			duration: $duration
 		}) {
 			id,
 			season {id, title},
 			position,
-			themenwoche {title, content}
+			themenwoche {title, text}
 		}
 	} 
 `

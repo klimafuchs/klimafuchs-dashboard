@@ -10,7 +10,7 @@ const THEMENWOCHES_LIST = gql`
 	query {
     themenwoches {            
       title
-      content
+      text
       createdAt
       updatedAt
     }
