@@ -10,7 +10,7 @@ const SEASON_PLANS = gql`
 	query seasonPlans { 
 		seasonPlans {
 			id
-				themenwoche {
+				thema {
 					title
 				}
 			duration
@@ -86,7 +86,7 @@ export class SeasonPlans extends React.Component {
 													<Row className="bg-light p-1 shadow-sm my-1 mx-1">
 														<Col className="d-flex align-items-center">
 															<span style={{ zIndex: '1' }}>
-																{seasonPlan.themenwoche.title}
+																{seasonPlan.thema.title}
 															</span>
 														</Col>
 														<Col className="d-flex align-items-center justify-content-center">
