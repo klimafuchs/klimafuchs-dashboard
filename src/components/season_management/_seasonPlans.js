@@ -10,7 +10,7 @@ const SEASON_PLANS = gql`
 	query seasonPlans { 
 		seasonPlans {
 			id
-				themenwoche {
+				thema {
 					title
 				}
 			duration
